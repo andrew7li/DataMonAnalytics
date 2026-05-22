@@ -1,9 +1,9 @@
 from pathlib import Path
 import pandas as pd
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data" / "tcg-csv-data" / "cleaned"
-OUTPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "clean_merged_sv.csv"
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT_DIR / "data" / "intermediate" / "tcg-csv-data" / "cleaned"
+OUTPUT_PATH = ROOT_DIR / "data" / "intermediate" / "tcg-csv-data" / "clean_merged_sv.csv"
 
 def merge_csvs():
     csv_files = sorted(DATA_DIR.glob("*.csv"))

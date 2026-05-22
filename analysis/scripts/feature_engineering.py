@@ -2,14 +2,10 @@ import pandas as pd
 from pathlib import Path
 import re
 
-# BASE_DIR = Path(__file__).resolve().parent.parent
-# INPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "clean_merged_sv_filtered.csv"
-# OUTPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "clean_merged_sv_tagged.csv"
+ROOT_DIR = Path(__file__).resolve().parents[2]
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-INPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "cleaned" / "sv_promos_cleaned.csv"
-OUTPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "cleaned" / "sv_promos_featured.csv"
+DATA_PATH = ROOT_DIR / "data" / "intermediate" / "tcg-csv-data" / "cleaned" / "sv_promos_cleaned.csv"
+OUTPUT_PATH = ROOT_DIR / "data" / "intermediate" / "tcg-csv-data" / "cleaned" / "sv_promos_featured.csv"
 
 LEGENDARIES = {
     "Mewtwo", "Articuno", "Zapdos", "Moltres", "Raikou", "Entei", "Suicune",
@@ -107,7 +103,7 @@ def add_features(df):
     return df
 
 def main():
-    df = pd.read_csv(INPUT_PATH)
+    df = pd.read_csv(DATA_PATH)
 
     df = add_features(df)
 

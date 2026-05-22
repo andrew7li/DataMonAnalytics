@@ -1,3 +1,6 @@
-./venv
+/.venv/
+/venv/
 __pycache__/
 .~lock*
+/web/node_modules/
+/data/intermediate/

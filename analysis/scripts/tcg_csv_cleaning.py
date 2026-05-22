@@ -1,9 +1,9 @@
 from pathlib import Path
 import pandas as pd
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data" / "tcg-csv-data"
-OUTPUT_DIR = DATA_DIR / "cleaned"
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT_DIR / "data" / "raw" / "tcg-csv-data"
+OUTPUT_DIR = ROOT_DIR / "data" / "intermediate" / "tcg-csv-data" / "cleaned"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 COLUMNS_TO_DROP = [

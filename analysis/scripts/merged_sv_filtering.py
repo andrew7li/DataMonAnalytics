@@ -1,12 +1,12 @@
 from pathlib import Path
 import pandas as pd
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-INPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "clean_merged_sv.csv"
-OUTPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "clean_merged_sv_filtered.csv"
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = ROOT_DIR / "data" / "intermediate" / "tcg-csv-data" / "clean_merged_sv.csv"
+OUTPUT_PATH = ROOT_DIR / "data" / "intermediate" / "tcg-csv-data" / "clean_merged_sv_filtered.csv"
 
 def clean_merged():
-    df = pd.read_csv(INPUT_PATH)
+    df = pd.read_csv(DATA_PATH)
 
     print("Before cleaning:")
     print(f"Rows: {len(df)}")

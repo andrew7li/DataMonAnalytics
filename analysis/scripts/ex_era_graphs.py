@@ -3,15 +3,15 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parents[2]
 
-INPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "cleaned" / "ex_era_mega_merged_enriched_with_isEX.csv"
-PLOTS_DIR = BASE_DIR / "analysis" / "plots" / "ex_era"
+DATA_PATH = ROOT_DIR / "data" / "processed" / "ex_era_dataset.csv"
+PLOTS_DIR = ROOT_DIR / "analysis" / "plots" / "ex_era"
 PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def load_data():
-    df = pd.read_csv(INPUT_PATH)
+    df = pd.read_csv(DATA_PATH)
 
     df["marketPrice"] = pd.to_numeric(df["marketPrice"], errors="coerce")
 
@@ -81,7 +81,7 @@ def plot_log_price_by_rarity_boxplot(df):
     ]
 
     plt.figure(figsize=(11, 6))
-    plt.boxplot(data, labels=rarity_order, showfliers=False)
+    plt.boxplot(data, tick_labels=rarity_order, showfliers=False)
     plt.title("Log Market Price Distribution by Rarity")
     plt.xlabel("Rarity")
     plt.ylabel("Log Market Price")
@@ -135,7 +135,7 @@ def plot_log_price_by_set_boxplot(df):
     ]
 
     plt.figure(figsize=(14, 6))
-    plt.boxplot(data, labels=set_order, showfliers=False)
+    plt.boxplot(data, tick_labels=set_order, showfliers=False)
     plt.title("Log Market Price Distribution by Set")
     plt.xlabel("Set")
     plt.ylabel("Log Market Price")

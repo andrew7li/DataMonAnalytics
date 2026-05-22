@@ -1,10 +1,10 @@
 from pathlib import Path
 import pandas as pd
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parents[2]
 
-INPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "sv_promos.csv"
-OUTPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "cleaned" / "sv_promos_cleaned.csv"
+DATA_PATH = ROOT_DIR / "data" / "raw" / "tcg-csv-data" / "sv_promos.csv"
+OUTPUT_PATH = ROOT_DIR / "data" / "intermediate" / "tcg-csv-data" / "cleaned" / "sv_promos_cleaned.csv"
 
 COLUMNS_TO_DROP = [
     "productId", "imageUrl", "categoryId", "groupId", "url",
@@ -45,7 +45,7 @@ def classify_supertype(card_subtype):
     return "unknown"
 
 def clean_promos():
-    df = pd.read_csv(INPUT_PATH)
+    df = pd.read_csv(DATA_PATH)
 
     # Normalize card number column
     if "extCardNumber" in df.columns:

@@ -1,0 +1,323 @@
+SCARLET/VIOLET INTRINSIC CARD VALUE REGRESSION
+====================================================================================================
+Input file: /home/nikai/Code/PokemonTCGAnalysis/data/processed/sv_modeling_dataset.csv
+Rows used after dropping invalid prices: 7068
+Columns: 28
+
+
+MODEL 1: STRUCTURAL CONTROLS ONLY
+====================================================================================================
+Formula:
+logMarketPrice ~ C(cardRarity) + C(finishType) + C(patternType) + C(setName)
+
+Model summary:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:         logMarketPrice   R-squared:                       0.863
+Model:                            OLS   Adj. R-squared:                  0.863
+Method:                 Least Squares   F-statistic:                     1211.
+Date:                Fri, 22 May 2026   Prob (F-statistic):               0.00
+Time:                        18:30:01   Log-Likelihood:                -7298.5
+No. Observations:                7068   AIC:                         1.467e+04
+Df Residuals:                    7031   BIC:                         1.493e+04
+Df Model:                          36                                         
+Covariance Type:                  HC3                                         
+==============================================================================================================
+                                                 coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------
+Intercept                                      0.2194      0.214      1.026      0.305      -0.200       0.639
+C(cardRarity)[T.Black White Rare]              6.2036      0.225     27.591      0.000       5.763       6.644
+C(cardRarity)[T.Common]                       -2.4227      0.227    -10.679      0.000      -2.867      -1.978
+C(cardRarity)[T.Double Rare]                  -0.0406      0.215     -0.189      0.850      -0.462       0.381
+C(cardRarity)[T.Holo Rare]                    -1.1719      1.475     -0.794      0.427      -4.064       1.720
+C(cardRarity)[T.Hyper Rare]                    2.1927      0.235      9.332      0.000       1.732       2.653
+C(cardRarity)[T.Illustration Rare]             2.4265      0.216     11.252      0.000       2.004       2.849
+C(cardRarity)[T.Mega Attack Rare]              2.6772      0.491      5.450      0.000       1.714       3.640
+C(cardRarity)[T.Mega Hyper Rare]               5.8219      0.260     22.360      0.000       5.312       6.332
+C(cardRarity)[T.Promo]                        -0.0438      0.662     -0.066      0.947      -1.341       1.254
+C(cardRarity)[T.Rare]                         -1.9167      0.217     -8.853      0.000      -2.341      -1.492
+C(cardRarity)[T.Special Illustration Rare]     3.7538      0.227     16.521      0.000       3.308       4.199
+C(cardRarity)[T.Ultra Rare]                    0.9979      0.217      4.601      0.000       0.573       1.423
+C(cardRarity)[T.Uncommon]                     -2.2381      0.227     -9.855      0.000      -2.683      -1.793
+C(finishType)[T.Normal]                        0.0248      0.088      0.283      0.777      -0.147       0.197
+C(finishType)[T.Reverse Holofoil]              0.7264      0.078      9.331      0.000       0.574       0.879
+C(patternType)[T.masterball]                   4.0641      0.106     38.332      0.000       3.856       4.272
+C(patternType)[T.none]                        -0.0523      0.044     -1.186      0.236      -0.139       0.034
+C(patternType)[T.pokeball]                     1.4538      0.097     14.976      0.000       1.263       1.644
+C(setName)[T.Black Bolt]                      -0.2973      0.044     -6.682      0.000      -0.384      -0.210
+C(setName)[T.Destined Rivals]                 -0.0012      0.040     -0.030      0.976      -0.080       0.078
+C(setName)[T.Journey Together]                -0.2082      0.042     -4.991      0.000      -0.290      -0.126
+C(setName)[T.Mega Evolution]                  -0.2777      0.045     -6.105      0.000      -0.367      -0.189
+C(setName)[T.Obsidian Flames]                 -0.1093      0.040     -2.730      0.006      -0.188      -0.031
+C(setName)[T.Paldea Evolved]                  -0.1770      0.041     -4.299      0.000      -0.258      -0.096
+C(setName)[T.Paradox Rift]                    -0.2507      0.038     -6.544      0.000      -0.326      -0.176
+C(setName)[T.Phantasmal Flames]               -0.2749      0.050     -5.516      0.000      -0.373      -0.177
+C(setName)[T.Prismatic Evolutions]            -0.3608      0.048     -7.540      0.000      -0.455      -0.267
+C(setName)[T.Scarlet & Violet 151]             0.5864      0.051     11.399      0.000       0.486       0.687
+C(setName)[T.Scarlet & Violet Base]           -0.2136      0.039     -5.487      0.000      -0.290      -0.137
+C(setName)[T.Scarlet & Violet Promos]          1.3532      0.623      2.172      0.030       0.132       2.574
+C(setName)[T.Shrouded Fable]                  -0.0320      0.059     -0.544      0.586      -0.147       0.083
+C(setName)[T.Stellar Crown]                   -0.3712      0.044     -8.412      0.000      -0.458      -0.285
+C(setName)[T.Surging Sparks]                  -0.3954      0.040     -9.852      0.000      -0.474      -0.317
+C(setName)[T.Temporal Forces]                 -0.1146      0.040     -2.868      0.004      -0.193      -0.036
+C(setName)[T.Twilight Masquerade]             -0.2027      0.042     -4.868      0.000      -0.284      -0.121
+C(setName)[T.White Flare]                     -0.2653      0.045     -5.956      0.000      -0.353      -0.178
+==============================================================================
+Omnibus:                     1479.411   Durbin-Watson:                   1.429
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            10091.830
+Skew:                           0.829   Prob(JB):                         0.00
+Kurtosis:                       8.614   Cond. No.                         118.
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+
+Coefficients sorted by p-value:
+                                                coef        p_value   std_err  conf_low  conf_high
+C(patternType)[T.masterball]                4.064108   0.000000e+00  0.106023  3.856306   4.271910
+C(cardRarity)[T.Black White Rare]           6.203627  1.443365e-167  0.224846  5.762937   6.644316
+C(cardRarity)[T.Mega Hyper Rare]            5.821909  9.559793e-111  0.260367  5.311600   6.332218
+C(cardRarity)[T.Special Illustration Rare]  3.753832   2.587119e-61  0.227215  3.308500   4.199165
+C(patternType)[T.pokeball]                  1.453760   1.058964e-50  0.097075  1.263497   1.644023
+C(setName)[T.Scarlet & Violet 151]          0.586413   4.209008e-30  0.051442  0.485588   0.687238
+C(cardRarity)[T.Illustration Rare]          2.426508   2.272981e-29  0.215658  2.003826   2.849189
+C(cardRarity)[T.Common]                    -2.422749   1.274499e-26  0.226868 -2.867401  -1.978097
+C(cardRarity)[T.Uncommon]                  -2.238051   6.493221e-23  0.227088 -2.683135  -1.792967
+C(setName)[T.Surging Sparks]               -0.395402   6.713594e-23  0.040134 -0.474062  -0.316741
+C(cardRarity)[T.Hyper Rare]                 2.192741   1.039125e-20  0.234971  1.732207   2.653275
+C(finishType)[T.Reverse Holofoil]           0.726443   1.050216e-20  0.077854  0.573852   0.879034
+C(cardRarity)[T.Rare]                      -1.916681   8.521887e-19  0.216501 -2.341015  -1.492346
+C(setName)[T.Stellar Crown]                -0.371226   4.016848e-17  0.044128 -0.457716  -0.284736
+C(setName)[T.Prismatic Evolutions]         -0.360837   4.711872e-14  0.047858 -0.454638  -0.267036
+C(setName)[T.Black Bolt]                   -0.297251   2.351632e-11  0.044483 -0.384436  -0.210066
+C(setName)[T.Paradox Rift]                 -0.250685   5.991181e-11  0.038308 -0.325768  -0.175603
+C(setName)[T.Mega Evolution]               -0.277712   1.028821e-09  0.045490 -0.366872  -0.188553
+C(setName)[T.White Flare]                  -0.265261   2.582131e-09  0.044536 -0.352549  -0.177973
+C(setName)[T.Phantasmal Flames]            -0.274942   3.472213e-08  0.049846 -0.372639  -0.177245
+C(setName)[T.Scarlet & Violet Base]        -0.213581   4.080128e-08  0.038923 -0.289868  -0.137295
+C(cardRarity)[T.Mega Attack Rare]           2.677189   5.043277e-08  0.491247  1.714362   3.640016
+C(setName)[T.Journey Together]             -0.208219   5.994500e-07  0.041716 -0.289981  -0.126458
+C(setName)[T.Twilight Masquerade]          -0.202651   1.124859e-06  0.041626 -0.284236  -0.121067
+C(cardRarity)[T.Ultra Rare]                 0.997921   4.210727e-06  0.216906  0.572792   1.423049
+C(setName)[T.Paldea Evolved]               -0.176985   1.717952e-05  0.041172 -0.257680  -0.096290
+C(setName)[T.Temporal Forces]              -0.114635   4.133189e-03  0.039973 -0.192981  -0.036290
+C(setName)[T.Obsidian Flames]              -0.109293   6.328582e-03  0.040030 -0.187750  -0.030835
+C(setName)[T.Scarlet & Violet Promos]       1.353210   2.984772e-02  0.622995  0.132163   2.574258
+C(patternType)[T.none]                     -0.052324   2.355511e-01  0.044111 -0.138781   0.034133
+Intercept                                   0.219418   3.050575e-01  0.213931 -0.199879   0.638715
+C(cardRarity)[T.Holo Rare]                 -1.171886   4.270322e-01  1.475405 -4.063627   1.719856
+C(setName)[T.Shrouded Fable]               -0.031954   5.862119e-01  0.058704 -0.147012   0.083103
+C(finishType)[T.Normal]                     0.024828   7.770813e-01  0.087692 -0.147046   0.196702
+C(cardRarity)[T.Double Rare]               -0.040649   8.501012e-01  0.215088 -0.462215   0.380916
+C(cardRarity)[T.Promo]                     -0.043756   9.473037e-01  0.662039 -1.341328   1.253816
+C(setName)[T.Destined Rivals]              -0.001206   9.760479e-01  0.040177 -0.079952   0.077539
+
+Approximate percent change from log coefficient:
+                                                coef  percent_change        p_value
+C(patternType)[T.masterball]                4.064108     5721.296462   0.000000e+00
+C(cardRarity)[T.Black White Rare]           6.203627    49353.940124  1.443365e-167
+C(cardRarity)[T.Mega Hyper Rare]            5.821909    33661.601624  9.559793e-111
+C(cardRarity)[T.Special Illustration Rare]  3.753832     4168.435211   2.587119e-61
+C(patternType)[T.pokeball]                  1.453760      327.917347   1.058964e-50
+C(setName)[T.Scarlet & Violet 151]          0.586413       79.752947   4.209008e-30
+C(cardRarity)[T.Illustration Rare]          2.426508     1031.928227   2.272981e-29
+C(cardRarity)[T.Common]                    -2.422749      -91.132252   1.274499e-26
+C(cardRarity)[T.Uncommon]                  -2.238051      -89.333381   6.493221e-23
+C(setName)[T.Surging Sparks]               -0.395402      -32.659048   6.713594e-23
+C(cardRarity)[T.Hyper Rare]                 2.192741      795.973570   1.039125e-20
+C(finishType)[T.Reverse Holofoil]           0.726443      106.771312   1.050216e-20
+C(cardRarity)[T.Rare]                      -1.916681      -85.290557   8.521887e-19
+C(setName)[T.Stellar Crown]                -0.371226      -31.011219   4.016848e-17
+C(setName)[T.Prismatic Evolutions]         -0.360837      -30.290734   4.711872e-14
+C(setName)[T.Black Bolt]                   -0.297251      -25.714233   2.351632e-11
+C(setName)[T.Paradox Rift]                 -0.250685      -22.173286   5.991181e-11
+C(setName)[T.Mega Evolution]               -0.277712      -24.248541   1.028821e-09
+C(setName)[T.White Flare]                  -0.265261      -23.299456   2.582131e-09
+C(setName)[T.Phantasmal Flames]            -0.274942      -24.038374   3.472213e-08
+C(setName)[T.Scarlet & Violet Base]        -0.213581      -19.231359   4.080128e-08
+C(cardRarity)[T.Mega Attack Rare]           2.677189     1354.414719   5.043277e-08
+C(setName)[T.Journey Together]             -0.208219      -18.797110   5.994500e-07
+C(setName)[T.Twilight Masquerade]          -0.202651      -18.343718   1.124859e-06
+C(cardRarity)[T.Ultra Rare]                 0.997921      171.263575   4.210727e-06
+C(setName)[T.Paldea Evolved]               -0.176985      -16.220763   1.717952e-05
+C(setName)[T.Temporal Forces]              -0.114635      -10.830872   4.133189e-03
+C(setName)[T.Obsidian Flames]              -0.109293      -10.353194   6.328582e-03
+C(setName)[T.Scarlet & Violet Promos]       1.353210      286.982940   2.984772e-02
+C(patternType)[T.none]                     -0.052324       -5.097883   2.355511e-01
+Intercept                                   0.219418       24.535165   3.050575e-01
+C(cardRarity)[T.Holo Rare]                 -1.171886      -69.021776   4.270322e-01
+C(setName)[T.Shrouded Fable]               -0.031954       -3.144925   5.862119e-01
+C(finishType)[T.Normal]                     0.024828        2.513862   7.770813e-01
+C(cardRarity)[T.Double Rare]               -0.040649       -3.983431   8.501012e-01
+C(cardRarity)[T.Promo]                     -0.043756       -4.281269   9.473037e-01
+C(setName)[T.Destined Rivals]              -0.001206       -0.120555   9.760479e-01
+
+
+MODEL 2: STRUCTURAL CONTROLS + CHARACTER FLAGS
+====================================================================================================
+Formula:
+logMarketPrice ~ C(cardRarity) + C(finishType) + C(patternType) + C(setName) + isLegendary + isMythical + isStarter + isEeveelution + isWaifuTrainer
+
+Model summary:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:         logMarketPrice   R-squared:                       0.869
+Model:                            OLS   Adj. R-squared:                  0.868
+Method:                 Least Squares   F-statistic:                     1292.
+Date:                Fri, 22 May 2026   Prob (F-statistic):               0.00
+Time:                        18:30:01   Log-Likelihood:                -7149.0
+No. Observations:                7068   AIC:                         1.438e+04
+Df Residuals:                    7026   BIC:                         1.467e+04
+Df Model:                          41                                         
+Covariance Type:                  HC3                                         
+==============================================================================================================
+                                                 coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------
+Intercept                                      0.2473      0.212      1.164      0.245      -0.169       0.664
+C(cardRarity)[T.Black White Rare]              6.1082      0.227     26.956      0.000       5.664       6.552
+C(cardRarity)[T.Common]                       -2.4489      0.225    -10.875      0.000      -2.890      -2.008
+C(cardRarity)[T.Double Rare]                  -0.1468      0.213     -0.689      0.491      -0.564       0.271
+C(cardRarity)[T.Holo Rare]                    -1.2672      1.477     -0.858      0.391      -4.162       1.628
+C(cardRarity)[T.Hyper Rare]                    2.1420      0.234      9.149      0.000       1.683       2.601
+C(cardRarity)[T.Illustration Rare]             2.3698      0.214     11.076      0.000       1.950       2.789
+C(cardRarity)[T.Mega Attack Rare]              2.6380      0.493      5.355      0.000       1.673       3.603
+C(cardRarity)[T.Mega Hyper Rare]               5.6670      0.224     25.289      0.000       5.228       6.106
+C(cardRarity)[T.Promo]                        -0.1374      0.666     -0.206      0.837      -1.443       1.168
+C(cardRarity)[T.Rare]                         -2.0212      0.215     -9.389      0.000      -2.443      -1.599
+C(cardRarity)[T.Special Illustration Rare]     3.6448      0.224     16.247      0.000       3.205       4.084
+C(cardRarity)[T.Ultra Rare]                    0.9428      0.215      4.375      0.000       0.520       1.365
+C(cardRarity)[T.Uncommon]                     -2.2585      0.225    -10.016      0.000      -2.700      -1.817
+C(finishType)[T.Normal]                        0.0031      0.087      0.035      0.972      -0.168       0.174
+C(finishType)[T.Reverse Holofoil]              0.7079      0.077      9.149      0.000       0.556       0.860
+C(patternType)[T.masterball]                   4.0499      0.102     39.573      0.000       3.849       4.250
+C(patternType)[T.none]                        -0.0480      0.044     -1.085      0.278      -0.135       0.039
+C(patternType)[T.pokeball]                     1.4558      0.094     15.445      0.000       1.271       1.641
+C(setName)[T.Black Bolt]                      -0.2945      0.044     -6.669      0.000      -0.381      -0.208
+C(setName)[T.Destined Rivals]                  0.0045      0.040      0.113      0.910      -0.074       0.083
+C(setName)[T.Journey Together]                -0.2006      0.042     -4.781      0.000      -0.283      -0.118
+C(setName)[T.Mega Evolution]                  -0.2905      0.045     -6.445      0.000      -0.379      -0.202
+C(setName)[T.Obsidian Flames]                 -0.1233      0.039     -3.152      0.002      -0.200      -0.047
+C(setName)[T.Paldea Evolved]                  -0.1834      0.041     -4.427      0.000      -0.265      -0.102
+C(setName)[T.Paradox Rift]                    -0.2352      0.038     -6.137      0.000      -0.310      -0.160
+C(setName)[T.Phantasmal Flames]               -0.2791      0.048     -5.760      0.000      -0.374      -0.184
+C(setName)[T.Prismatic Evolutions]            -0.4853      0.043    -11.164      0.000      -0.570      -0.400
+C(setName)[T.Scarlet & Violet 151]             0.5581      0.051     10.857      0.000       0.457       0.659
+C(setName)[T.Scarlet & Violet Base]           -0.2078      0.039     -5.312      0.000      -0.284      -0.131
+C(setName)[T.Scarlet & Violet Promos]          1.4163      0.628      2.257      0.024       0.186       2.646
+C(setName)[T.Shrouded Fable]                  -0.0639      0.059     -1.091      0.275      -0.179       0.051
+C(setName)[T.Stellar Crown]                   -0.3797      0.044     -8.708      0.000      -0.465      -0.294
+C(setName)[T.Surging Sparks]                  -0.4006      0.040     -9.987      0.000      -0.479      -0.322
+C(setName)[T.Temporal Forces]                 -0.1153      0.040     -2.894      0.004      -0.193      -0.037
+C(setName)[T.Twilight Masquerade]             -0.2274      0.041     -5.549      0.000      -0.308      -0.147
+C(setName)[T.White Flare]                     -0.2758      0.044     -6.314      0.000      -0.361      -0.190
+isLegendary[T.True]                            0.0851      0.037      2.282      0.022       0.012       0.158
+isMythical[T.True]                             0.0490      0.060      0.816      0.415      -0.069       0.167
+isStarter[T.True]                              0.3216      0.035      9.161      0.000       0.253       0.390
+isEeveelution[T.True]                          1.1906      0.079     15.043      0.000       1.035       1.346
+isWaifuTrainer[T.True]                         0.0514      0.061      0.843      0.399      -0.068       0.171
+==============================================================================
+Omnibus:                     1518.121   Durbin-Watson:                   1.443
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            11445.379
+Skew:                           0.825   Prob(JB):                         0.00
+Kurtosis:                       9.012   Cond. No.                         118.
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+
+Coefficients sorted by p-value:
+                                                coef        p_value   std_err  conf_low  conf_high
+C(patternType)[T.masterball]                4.049892   0.000000e+00  0.102341  3.849308   4.250476
+C(cardRarity)[T.Black White Rare]           6.108226  4.864902e-160  0.226601  5.664097   6.552356
+C(cardRarity)[T.Mega Hyper Rare]            5.667007  4.264964e-141  0.224093  5.227792   6.106222
+C(cardRarity)[T.Special Illustration Rare]  3.644769   2.361531e-59  0.224341  3.205069   4.084468
+C(patternType)[T.pokeball]                  1.455810   8.124423e-54  0.094256  1.271071   1.640548
+isEeveelution[T.True]                       1.190591   3.833074e-51  0.079145  1.035469   1.345713
+C(setName)[T.Prismatic Evolutions]         -0.485288   6.123436e-29  0.043469 -0.570486  -0.400089
+C(cardRarity)[T.Illustration Rare]          2.369838   1.638607e-28  0.213960  1.950485   2.789192
+C(cardRarity)[T.Common]                    -2.448888   1.524133e-27  0.225195 -2.890261  -2.007515
+C(setName)[T.Scarlet & Violet 151]          0.558088   1.842861e-27  0.051402  0.457341   0.658835
+C(cardRarity)[T.Uncommon]                  -2.258500   1.291070e-23  0.225480 -2.700433  -1.816568
+C(setName)[T.Surging Sparks]               -0.400639   1.739620e-23  0.040116 -0.479265  -0.322012
+C(cardRarity)[T.Rare]                      -2.021239   6.055141e-21  0.215276 -2.443173  -1.599305
+isStarter[T.True]                           0.321606   5.130522e-20  0.035105  0.252801   0.390410
+C(finishType)[T.Reverse Holofoil]           0.707929   5.721566e-20  0.077374  0.556279   0.859579
+C(cardRarity)[T.Hyper Rare]                 2.142000   5.739061e-20  0.234120  1.683132   2.600867
+C(setName)[T.Stellar Crown]                -0.379692   3.086070e-18  0.043601 -0.465149  -0.294235
+C(setName)[T.Black Bolt]                   -0.294531   2.580576e-11  0.044166 -0.381095  -0.207967
+C(setName)[T.Mega Evolution]               -0.290505   1.154216e-10  0.045073 -0.378846  -0.202164
+C(setName)[T.White Flare]                  -0.275784   2.723866e-10  0.043680 -0.361396  -0.190173
+C(setName)[T.Paradox Rift]                 -0.235199   8.403270e-10  0.038324 -0.310313  -0.160086
+C(setName)[T.Phantasmal Flames]            -0.279146   8.419003e-09  0.048464 -0.374134  -0.184158
+C(setName)[T.Twilight Masquerade]          -0.227378   2.878274e-08  0.040979 -0.307694  -0.147061
+C(cardRarity)[T.Mega Attack Rare]           2.637965   8.534690e-08  0.492576  1.672533   3.603396
+C(setName)[T.Scarlet & Violet Base]        -0.207817   1.081481e-07  0.039119 -0.284488  -0.131146
+C(setName)[T.Journey Together]             -0.200582   1.741825e-06  0.041952 -0.282806  -0.118359
+C(setName)[T.Paldea Evolved]               -0.183434   9.534367e-06  0.041431 -0.264638  -0.102231
+C(cardRarity)[T.Ultra Rare]                 0.942811   1.212884e-05  0.215487  0.520464   1.365157
+C(setName)[T.Obsidian Flames]              -0.123294   1.621203e-03  0.039115 -0.199958  -0.046629
+C(setName)[T.Temporal Forces]              -0.115333   3.799513e-03  0.039848 -0.193433  -0.037233
+isLegendary[T.True]                         0.085123   2.246846e-02  0.037296  0.012024   0.158222
+C(setName)[T.Scarlet & Violet Promos]       1.416304   2.401672e-02  0.627555  0.186320   2.646289
+Intercept                                   0.247263   2.445403e-01  0.212478 -0.169186   0.663712
+C(setName)[T.Shrouded Fable]               -0.063936   2.752468e-01  0.058600 -0.178789   0.050917
+C(patternType)[T.none]                     -0.047952   2.780017e-01  0.044203 -0.134588   0.038684
+C(cardRarity)[T.Holo Rare]                 -1.267197   3.909580e-01  1.477124 -4.162308   1.627913
+isWaifuTrainer[T.True]                      0.051382   3.993132e-01  0.060963 -0.068102   0.170867
+isMythical[T.True]                          0.049046   4.145241e-01  0.060108 -0.068764   0.166856
+C(cardRarity)[T.Double Rare]               -0.146753   4.907457e-01  0.212956 -0.564140   0.270634
+C(cardRarity)[T.Promo]                     -0.137389   8.365427e-01  0.665910 -1.442548   1.167770
+C(setName)[T.Destined Rivals]               0.004542   9.096853e-01  0.040037 -0.073929   0.083012
+C(finishType)[T.Normal]                     0.003083   9.717976e-01  0.087212 -0.167849   0.174015
+
+Approximate percent change from log coefficient:
+                                                coef  percent_change        p_value
+C(patternType)[T.masterball]                4.049892     5639.124398   0.000000e+00
+C(cardRarity)[T.Black White Rare]           6.108226    44854.070997  4.864902e-160
+C(cardRarity)[T.Mega Hyper Rare]            5.667007    28816.781695  4.264964e-141
+C(cardRarity)[T.Special Illustration Rare]  3.644769     3727.391777   2.361531e-59
+C(patternType)[T.pokeball]                  1.455810      328.795323   8.124423e-54
+isEeveelution[T.True]                       1.190591      228.902393   3.833074e-51
+C(setName)[T.Prismatic Evolutions]         -0.485288      -38.447979   6.123436e-29
+C(cardRarity)[T.Illustration Rare]          2.369838      969.566354   1.638607e-28
+C(cardRarity)[T.Common]                    -2.448888      -91.361041   1.524133e-27
+C(setName)[T.Scarlet & Violet 151]          0.558088       74.732809   1.842861e-27
+C(cardRarity)[T.Uncommon]                  -2.258500      -89.549290   1.291070e-23
+C(setName)[T.Surging Sparks]               -0.400639      -33.010782   1.739620e-23
+C(cardRarity)[T.Rare]                      -2.021239      -86.750878   6.055141e-21
+isStarter[T.True]                           0.321606       37.934085   5.130522e-20
+C(finishType)[T.Reverse Holofoil]           0.707929      102.978376   5.721566e-20
+C(cardRarity)[T.Hyper Rare]                 2.142000      751.645173   5.739061e-20
+C(setName)[T.Stellar Crown]                -0.379692      -31.592782   3.086070e-18
+C(setName)[T.Black Bolt]                   -0.294531      -25.511928   2.580576e-11
+C(setName)[T.Mega Evolution]               -0.290505      -25.211423   1.154216e-10
+C(setName)[T.White Flare]                  -0.275784      -24.102337   2.723866e-10
+C(setName)[T.Paradox Rift]                 -0.235199      -20.958679   8.403270e-10
+C(setName)[T.Phantasmal Flames]            -0.279146      -24.357061   8.419003e-09
+C(setName)[T.Twilight Masquerade]          -0.227378      -20.338010   2.878274e-08
+C(cardRarity)[T.Mega Attack Rare]           2.637965     1298.470952   8.534690e-08
+C(setName)[T.Scarlet & Violet Base]        -0.207817      -18.764419   1.081481e-07
+C(setName)[T.Journey Together]             -0.200582      -18.174586   1.741825e-06
+C(setName)[T.Paldea Evolved]               -0.183434      -16.759351   9.534367e-06
+C(cardRarity)[T.Ultra Rare]                 0.942811      156.718672   1.212884e-05
+C(setName)[T.Obsidian Flames]              -0.123294      -11.599607   1.621203e-03
+C(setName)[T.Temporal Forces]              -0.115333      -10.893060   3.799513e-03
+isLegendary[T.True]                         0.085123        8.885117   2.246846e-02
+C(setName)[T.Scarlet & Violet Promos]       1.416304      312.185935   2.401672e-02
+Intercept                                   0.247263       28.051620   2.445403e-01
+C(setName)[T.Shrouded Fable]               -0.063936       -6.193460   2.752468e-01
+C(patternType)[T.none]                     -0.047952       -4.682041   2.780017e-01
+C(cardRarity)[T.Holo Rare]                 -1.267197      -71.838016   3.909580e-01
+isWaifuTrainer[T.True]                      0.051382        5.272528   3.993132e-01
+isMythical[T.True]                          0.049046        5.026846   4.145241e-01
+C(cardRarity)[T.Double Rare]               -0.146753      -13.649295   4.907457e-01
+C(cardRarity)[T.Promo]                     -0.137389      -12.836892   8.365427e-01
+C(setName)[T.Destined Rivals]               0.004542        0.455192   9.096853e-01
+C(finishType)[T.Normal]                     0.003083        0.308803   9.717976e-01
+
+
+MODEL COMPARISON
+====================================================================================================
+                             model  nobs  r_squared  adj_r_squared          aic          bic
+       Model 1 Structural Controls  7068   0.863319       0.862619 14671.065534 14925.008849
+Model 2 Controls + Character Flags  7068   0.868983       0.868219 14381.936717 14670.196696

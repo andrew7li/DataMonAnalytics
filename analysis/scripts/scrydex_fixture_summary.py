@@ -1,17 +1,15 @@
 import json
-import os
+from pathlib import Path
 
-scrydex_file_path = "data/scrydex/"
-
-# Build file path safely
-file_path = os.path.join(scrydex_file_path, "pricing-data-graded", "fixture.json")
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = ROOT_DIR / "data" / "external" / "scrydex" / "pricing-data-graded" / "fixture.json"
 
 # TODO: This eventually would be the result of the API: https://scrydex.com/docs/getting-started/prices#graded,
 # but is mocked for now.
 data = None
 
 # Load file
-with open(file_path, "r") as f:
+with open(DATA_PATH, "r") as f:
     data = json.load(f)
 
 prices = data.get("prices", [])

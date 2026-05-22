@@ -6,27 +6,27 @@ from pathlib import Path
 import statsmodels.formula.api as smf
 
 # File paths
-BASE_DIR = Path(__file__).parent.parent
+ROOT_DIR = Path(__file__).resolve().parents[2]
 
-data_path = BASE_DIR / "data" / "mock-data" / "cz_updated_populations.csv"
+DATA_PATH = ROOT_DIR / "data" / "intermediate" / "mock-data" / "cz_updated_populations.csv"
 
-output_dir = BASE_DIR / "analysis" / "plots"
-output_dir.mkdir(parents=True, exist_ok=True)
+PLOTS_DIR = ROOT_DIR / "analysis" / "plots" / "sv"
+PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
-output_path = BASE_DIR / "analysis" / "cz_eda_output.txt"
+OUTPUT_PATH = ROOT_DIR / "analysis" / "outputs" / "sv" / "cz_eda_output.txt"
 
 # Helper function to save or show plots based on backend
 def render_plot(filename: str) -> None:
     backend = plt.get_backend().lower()
     if "agg" in backend:
-        save_path = output_dir / filename
+        save_path = PLOTS_DIR / filename
         plt.savefig(save_path, dpi=300, bbox_inches="tight")
         print(f"Saved plot to {save_path}")
         plt.close()
     else:
         plt.show()
 
-df = pd.read_csv(data_path)
+df = pd.read_csv(DATA_PATH)
 df_model = df.copy()
 
 def first_non_null_or_na(series):
@@ -155,7 +155,7 @@ print("\nModel comparison:")
 print(comparison)
 
 # Save all results to a text file for future review
-with open(output_path, "w") as f:
+with open(OUTPUT_PATH, "w") as f:
     f.write("=== Missing values in df_model ===\n")
     f.write(str(missing_df_model))
     f.write("\n\n")
