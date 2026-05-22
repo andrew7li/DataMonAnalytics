@@ -2,9 +2,14 @@ import pandas as pd
 from pathlib import Path
 import re
 
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# INPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "clean_merged_sv_filtered.csv"
+# OUTPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "clean_merged_sv_tagged.csv"
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-INPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "clean_merged_sv_filtered.csv"
-OUTPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "clean_merged_sv_tagged.csv"
+
+INPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "cleaned" / "sv_promos_cleaned.csv"
+OUTPUT_PATH = BASE_DIR / "data" / "tcg-csv-data" / "cleaned" / "sv_promos_featured.csv"
 
 LEGENDARIES = {
     "Mewtwo", "Articuno", "Zapdos", "Moltres", "Raikou", "Entei", "Suicune",

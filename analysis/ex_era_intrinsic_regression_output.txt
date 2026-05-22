@@ -1,0 +1,263 @@
+EX ERA / MEGA ERA INTRINSIC CARD VALUE REGRESSION
+====================================================================================================
+Input file: /home/nikai/Code/PokemonTCGAnalysis/data/tcg-csv-data/cleaned/ex_era_mega_merged_enriched_with_isEX.csv
+Rows used after dropping invalid prices: 3256
+Columns: 40
+
+
+MODEL 1: STRUCTURAL CONTROLS ONLY
+====================================================================================================
+Formula:
+log_market_price ~ C(extRarity) + C(subTypeName) + C(source_set_name)
+
+Model summary:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:       log_market_price   R-squared:                       0.749
+Model:                            OLS   Adj. R-squared:                  0.748
+Method:                 Least Squares   F-statistic:                     450.5
+Date:                Mon, 04 May 2026   Prob (F-statistic):               0.00
+Time:                        21:46:55   Log-Likelihood:                -4285.1
+No. Observations:                3256   AIC:                             8618.
+Df Residuals:                    3232   BIC:                             8764.
+Df Model:                          23                                         
+Covariance Type:                  HC3                                         
+=============================================================================================================
+                                                coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------------------
+Intercept                                     1.7415      0.108     16.109      0.000       1.530       1.953
+C(extRarity)[T.Holo Rare]                     1.5391      0.064     24.180      0.000       1.414       1.664
+C(extRarity)[T.Rare]                          0.6594      0.051     12.874      0.000       0.559       0.760
+C(extRarity)[T.Secret Rare]                   3.0351      0.204     14.899      0.000       2.636       3.434
+C(extRarity)[T.Ultra Rare]                    3.4107      0.103     33.004      0.000       3.208       3.613
+C(extRarity)[T.Uncommon]                      0.1618      0.041      3.983      0.000       0.082       0.241
+C(extRarity)[T.missing]                       6.1477      0.362     16.962      0.000       5.437       6.858
+C(subTypeName)[T.Normal]                     -1.7262      0.077    -22.333      0.000      -1.878      -1.575
+C(subTypeName)[T.Reverse Holofoil]            0.5866      0.071      8.286      0.000       0.448       0.725
+C(source_set_name)[T.DeltaSpecies]            0.6989      0.109      6.441      0.000       0.486       0.912
+C(source_set_name)[T.Deoxys]                  0.1846      0.095      1.948      0.051      -0.001       0.370
+C(source_set_name)[T.Dragon]                 -0.0581      0.097     -0.601      0.548      -0.248       0.131
+C(source_set_name)[T.DragonFrontiers]         0.1341      0.095      1.416      0.157      -0.051       0.320
+C(source_set_name)[T.Emerald]                 0.4574      0.096      4.746      0.000       0.269       0.646
+C(source_set_name)[T.FireRedAndLeafGreen]     0.3408      0.098      3.469      0.001       0.148       0.533
+C(source_set_name)[T.HiddenLegends]          -0.0841      0.097     -0.862      0.389      -0.275       0.107
+C(source_set_name)[T.HolonPhantoms]           0.2837      0.104      2.737      0.006       0.081       0.487
+C(source_set_name)[T.LegendMaker]             0.0481      0.097      0.494      0.622      -0.143       0.239
+C(source_set_name)[T.PowerKeepers]           -0.2881      0.095     -3.036      0.002      -0.474      -0.102
+C(source_set_name)[T.RubyandSapphire]        -0.2835      0.089     -3.172      0.002      -0.459      -0.108
+C(source_set_name)[T.Sandstorm]               0.0203      0.097      0.209      0.834      -0.170       0.210
+C(source_set_name)[T.TeamMagmavsTeamAqua]     0.1839      0.098      1.883      0.060      -0.007       0.375
+C(source_set_name)[T.TeamRocketReturns]       1.1197      0.098     11.465      0.000       0.928       1.311
+C(source_set_name)[T.UnseenForces]            0.2490      0.092      2.716      0.007       0.069       0.429
+==============================================================================
+Omnibus:                      189.625   Durbin-Watson:                   1.323
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              225.356
+Skew:                           0.602   Prob(JB):                     1.16e-49
+Kurtosis:                       3.459   Cond. No.                         27.6
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+
+Coefficients sorted by p-value:
+                                               coef        p_value   std_err  conf_low  conf_high
+C(extRarity)[T.Ultra Rare]                 3.410703  7.135111e-239  0.103342  3.208156   3.613251
+C(extRarity)[T.Holo Rare]                  1.539089  3.597779e-129  0.063651  1.414336   1.663843
+C(subTypeName)[T.Normal]                  -1.726183  1.777223e-110  0.077294 -1.877677  -1.574690
+C(extRarity)[T.missing]                    6.147677   1.569140e-64  0.362438  5.437311   6.858043
+Intercept                                  1.741458   2.208438e-58  0.108105  1.529576   1.953340
+C(extRarity)[T.Secret Rare]                3.035116   3.342610e-50  0.203712  2.635848   3.434384
+C(extRarity)[T.Rare]                       0.659411   6.315848e-38  0.051221  0.559020   0.759802
+C(source_set_name)[T.TeamRocketReturns]    1.119675   1.982291e-30  0.097662  0.928261   1.311089
+C(subTypeName)[T.Reverse Holofoil]         0.586565   1.175449e-16  0.070794  0.447812   0.725318
+C(source_set_name)[T.DeltaSpecies]         0.698893   1.189878e-10  0.108513  0.486211   0.911576
+C(source_set_name)[T.Emerald]              0.457357   2.069714e-06  0.096357  0.268501   0.646213
+C(extRarity)[T.Uncommon]                   0.161760   6.801391e-05  0.040611  0.082163   0.241357
+C(source_set_name)[T.FireRedAndLeafGreen]  0.340757   5.222992e-04  0.098228  0.148234   0.533280
+C(source_set_name)[T.RubyandSapphire]     -0.283541   1.515162e-03  0.089396 -0.458753  -0.108329
+C(source_set_name)[T.PowerKeepers]        -0.288051   2.395269e-03  0.094870 -0.473992  -0.102109
+C(source_set_name)[T.HolonPhantoms]        0.283727   6.204396e-03  0.103672  0.080534   0.486921
+C(source_set_name)[T.UnseenForces]         0.249037   6.610814e-03  0.091698  0.069312   0.428761
+C(source_set_name)[T.Deoxys]               0.184596   5.143814e-02  0.094771 -0.001152   0.370344
+C(source_set_name)[T.TeamMagmavsTeamAqua]  0.183876   5.964110e-02  0.097628 -0.007471   0.375223
+C(source_set_name)[T.DragonFrontiers]      0.134105   1.567196e-01  0.094694 -0.051492   0.319701
+C(source_set_name)[T.HiddenLegends]       -0.084050   3.885038e-01  0.097469 -0.275085   0.106984
+C(source_set_name)[T.Dragon]              -0.058146   5.476615e-01  0.096705 -0.247683   0.131392
+C(source_set_name)[T.LegendMaker]          0.048092   6.216127e-01  0.097438 -0.142883   0.239067
+C(source_set_name)[T.Sandstorm]            0.020292   8.343570e-01  0.097036 -0.169895   0.210479
+
+Approximate percent change from log coefficient:
+                                               coef  percent_change        p_value
+C(extRarity)[T.Ultra Rare]                 3.410703     2928.653890  7.135111e-239
+C(extRarity)[T.Holo Rare]                  1.539089      366.034410  3.597779e-129
+C(subTypeName)[T.Normal]                  -1.726183      -82.203769  1.777223e-110
+C(extRarity)[T.missing]                    6.147677    46662.986862   1.569140e-64
+Intercept                                  1.741458      470.565630   2.208438e-58
+C(extRarity)[T.Secret Rare]                3.035116     1980.339724   3.342610e-50
+C(extRarity)[T.Rare]                       0.659411       93.365324   6.315848e-38
+C(source_set_name)[T.TeamRocketReturns]    1.119675      206.385834   1.982291e-30
+C(subTypeName)[T.Reverse Holofoil]         0.586565       79.780294   1.175449e-16
+C(source_set_name)[T.DeltaSpecies]         0.698893      101.152540   1.189878e-10
+C(source_set_name)[T.Emerald]              0.457357       57.989351   2.069714e-06
+C(extRarity)[T.Uncommon]                   0.161760       17.557816   6.801391e-05
+C(source_set_name)[T.FireRedAndLeafGreen]  0.340757       40.601149   5.222992e-04
+C(source_set_name)[T.RubyandSapphire]     -0.283541      -24.688809   1.515162e-03
+C(source_set_name)[T.PowerKeepers]        -0.288051      -25.027633   2.395269e-03
+C(source_set_name)[T.HolonPhantoms]        0.283727       32.807069   6.204396e-03
+C(source_set_name)[T.UnseenForces]         0.249037       28.278910   6.610814e-03
+C(source_set_name)[T.Deoxys]               0.184596       20.273240   5.143814e-02
+C(source_set_name)[T.TeamMagmavsTeamAqua]  0.183876       20.186655   5.964110e-02
+C(source_set_name)[T.DragonFrontiers]      0.134105       14.351233   1.567196e-01
+C(source_set_name)[T.HiddenLegends]       -0.084050       -8.061509   3.885038e-01
+C(source_set_name)[T.Dragon]              -0.058146       -5.648735   5.476615e-01
+C(source_set_name)[T.LegendMaker]          0.048092        4.926726   6.216127e-01
+C(source_set_name)[T.Sandstorm]            0.020292        2.049915   8.343570e-01
+
+
+MODEL 2: STRUCTURAL CONTROLS + INTRINSIC TRAITS
+====================================================================================================
+Formula:
+log_market_price ~ C(extRarity) + C(subTypeName) + C(source_set_name) + C(generation) + isstarter + islegendary + ismythical + isgoldstar + iseeveelution + isdeltaspecies + isEXcard
+
+Model summary:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:       log_market_price   R-squared:                       0.812
+Model:                            OLS   Adj. R-squared:                  0.810
+Method:                 Least Squares   F-statistic:                     475.4
+Date:                Mon, 04 May 2026   Prob (F-statistic):               0.00
+Time:                        21:46:55   Log-Likelihood:                -3818.6
+No. Observations:                3256   AIC:                             7707.
+Df Residuals:                    3221   BIC:                             7920.
+Df Model:                          34                                         
+Covariance Type:                  HC3                                         
+=============================================================================================================
+                                                coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------------------
+Intercept                                     1.8226      0.093     19.579      0.000       1.640       2.005
+C(extRarity)[T.Holo Rare]                     1.4248      0.059     24.283      0.000       1.310       1.540
+C(extRarity)[T.Rare]                          0.6994      0.043     16.439      0.000       0.616       0.783
+C(extRarity)[T.Secret Rare]                   2.3219      0.285      8.144      0.000       1.763       2.881
+C(extRarity)[T.Ultra Rare]                    2.9216      0.381      7.664      0.000       2.174       3.669
+C(extRarity)[T.Uncommon]                      0.4080      0.037     11.051      0.000       0.336       0.480
+C(extRarity)[T.missing]                       6.8584      0.409     16.785      0.000       6.058       7.659
+C(subTypeName)[T.Normal]                     -1.7348      0.072    -24.080      0.000      -1.876      -1.594
+C(subTypeName)[T.Reverse Holofoil]            0.5643      0.064      8.824      0.000       0.439       0.690
+C(source_set_name)[T.DeltaSpecies]            0.6725      0.088      7.602      0.000       0.499       0.846
+C(source_set_name)[T.Deoxys]                  0.5169      0.074      6.941      0.000       0.371       0.663
+C(source_set_name)[T.Dragon]                  0.1566      0.076      2.050      0.040       0.007       0.306
+C(source_set_name)[T.DragonFrontiers]        -0.0373      0.083     -0.450      0.653      -0.200       0.125
+C(source_set_name)[T.Emerald]                 0.7586      0.078      9.786      0.000       0.607       0.911
+C(source_set_name)[T.FireRedAndLeafGreen]     0.3050      0.081      3.779      0.000       0.147       0.463
+C(source_set_name)[T.HiddenLegends]           0.1341      0.082      1.633      0.102      -0.027       0.295
+C(source_set_name)[T.HolonPhantoms]           0.2343      0.076      3.099      0.002       0.086       0.382
+C(source_set_name)[T.LegendMaker]             0.2524      0.078      3.242      0.001       0.100       0.405
+C(source_set_name)[T.PowerKeepers]            0.0421      0.070      0.597      0.551      -0.096       0.180
+C(source_set_name)[T.RubyandSapphire]         0.0261      0.064      0.404      0.686      -0.100       0.152
+C(source_set_name)[T.Sandstorm]               0.2453      0.075      3.260      0.001       0.098       0.393
+C(source_set_name)[T.TeamMagmavsTeamAqua]     0.5092      0.076      6.735      0.000       0.361       0.657
+C(source_set_name)[T.TeamRocketReturns]       1.2381      0.088     14.007      0.000       1.065       1.411
+C(source_set_name)[T.UnseenForces]            0.3639      0.074      4.911      0.000       0.219       0.509
+C(generation)[T.Gen 2]                       -0.2784      0.049     -5.694      0.000      -0.374      -0.183
+C(generation)[T.Gen 3]                       -0.5256      0.042    -12.401      0.000      -0.609      -0.443
+C(generation)[T.Non-Pokemon]                 -0.9501      0.054    -17.454      0.000      -1.057      -0.843
+C(generation)[T.Unknown]                      0.1169      0.178      0.657      0.511      -0.232       0.465
+isstarter[T.True]                             0.8113      0.054     15.068      0.000       0.706       0.917
+islegendary[T.True]                           1.0288      0.085     12.131      0.000       0.863       1.195
+ismythical[T.True]                            1.1128      0.173      6.425      0.000       0.773       1.452
+isgoldstar[T.True]                            1.7202      0.421      4.088      0.000       0.895       2.545
+iseeveelution[T.True]                         0.7378      0.128      5.758      0.000       0.487       0.989
+isdeltaspecies[T.True]                        0.4340      0.065      6.681      0.000       0.307       0.561
+isEXcard[T.True]                             -0.0034      0.370     -0.009      0.993      -0.729       0.722
+==============================================================================
+Omnibus:                      293.997   Durbin-Watson:                   1.481
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              407.893
+Skew:                           0.729   Prob(JB):                     2.67e-89
+Kurtosis:                       3.939   Cond. No.                         63.6
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+
+Coefficients sorted by p-value:
+                                               coef        p_value   std_err  conf_low  conf_high
+C(extRarity)[T.Holo Rare]                  1.424825  2.968224e-130  0.058676  1.309822   1.539828
+C(subTypeName)[T.Normal]                  -1.734814  4.093386e-128  0.072045 -1.876020  -1.593608
+Intercept                                  1.822562   2.321759e-85  0.093086  1.640116   2.005007
+C(generation)[T.Non-Pokemon]              -0.950136   3.219595e-68  0.054437 -1.056831  -0.843441
+C(extRarity)[T.missing]                    6.858392   3.142812e-63  0.408603  6.057545   7.659238
+C(extRarity)[T.Rare]                       0.699370   1.000647e-60  0.042543  0.615988   0.782752
+isstarter[T.True]                          0.811295   2.616140e-51  0.053841  0.705768   0.916821
+C(source_set_name)[T.TeamRocketReturns]    1.238108   1.409263e-44  0.088391  1.064864   1.411351
+C(generation)[T.Gen 3]                    -0.525581   2.579172e-35  0.042382 -0.608648  -0.442514
+islegendary[T.True]                        1.028798   7.280243e-34  0.084811  0.862571   1.195024
+C(extRarity)[T.Uncommon]                   0.408022   2.173475e-28  0.036922  0.335655   0.480388
+C(source_set_name)[T.Emerald]              0.758617   1.293716e-22  0.077521  0.606679   0.910555
+C(subTypeName)[T.Reverse Holofoil]         0.564317   1.109046e-18  0.063956  0.438966   0.689668
+C(extRarity)[T.Secret Rare]                2.321909   3.821746e-16  0.285104  1.763116   2.880702
+C(extRarity)[T.Ultra Rare]                 2.921602   1.807735e-14  0.381230  2.174404   3.668800
+C(source_set_name)[T.DeltaSpecies]         0.672535   2.921938e-14  0.088471  0.499135   0.845936
+C(source_set_name)[T.Deoxys]               0.516864   3.906750e-12  0.074471  0.370904   0.662824
+C(source_set_name)[T.TeamMagmavsTeamAqua]  0.509240   1.639559e-11  0.075611  0.361044   0.657435
+isdeltaspecies[T.True]                     0.433980   2.379777e-11  0.064961  0.306658   0.561302
+ismythical[T.True]                         1.112849   1.320178e-10  0.173211  0.773362   1.452335
+iseeveelution[T.True]                      0.737784   8.514176e-09  0.128133  0.486648   0.988920
+C(generation)[T.Gen 2]                    -0.278355   1.239075e-08  0.048883 -0.374165  -0.182545
+C(source_set_name)[T.UnseenForces]         0.363925   9.068122e-07  0.074106  0.218680   0.509171
+isgoldstar[T.True]                         1.720207   4.356413e-05  0.420824  0.895408   2.545006
+C(source_set_name)[T.FireRedAndLeafGreen]  0.305013   1.577436e-04  0.080722  0.146800   0.463226
+C(source_set_name)[T.Sandstorm]            0.245269   1.113075e-03  0.075230  0.097822   0.392717
+C(source_set_name)[T.LegendMaker]          0.252351   1.186086e-03  0.077833  0.099801   0.404901
+C(source_set_name)[T.HolonPhantoms]        0.234291   1.940775e-03  0.075599  0.086121   0.382462
+C(source_set_name)[T.Dragon]               0.156630   4.040355e-02  0.076420  0.006850   0.306411
+C(source_set_name)[T.HiddenLegends]        0.134093   1.023954e-01  0.082097 -0.026814   0.294999
+C(generation)[T.Unknown]                   0.116890   5.110175e-01  0.177846 -0.231682   0.465461
+C(source_set_name)[T.PowerKeepers]         0.042073   5.505151e-01  0.070476 -0.096057   0.180204
+C(source_set_name)[T.DragonFrontiers]     -0.037279   6.529008e-01  0.082892 -0.199744   0.125185
+C(source_set_name)[T.RubyandSapphire]      0.026068   6.860979e-01  0.064499 -0.100348   0.152484
+isEXcard[T.True]                          -0.003389   9.926998e-01  0.370350 -0.729260   0.722483
+
+Approximate percent change from log coefficient:
+                                               coef  percent_change        p_value
+C(extRarity)[T.Holo Rare]                  1.424825      315.712939  2.968224e-130
+C(subTypeName)[T.Normal]                  -1.734814      -82.356701  4.093386e-128
+Intercept                                  1.822562      518.768979   2.321759e-85
+C(generation)[T.Non-Pokemon]              -0.950136      -61.331152   3.219595e-68
+C(extRarity)[T.missing]                    6.858392    95083.515467   3.142812e-63
+C(extRarity)[T.Rare]                       0.699370      101.248523   1.000647e-60
+isstarter[T.True]                          0.811295      125.082065   2.616140e-51
+C(source_set_name)[T.TeamRocketReturns]    1.238108      244.908059   1.409263e-44
+C(generation)[T.Gen 3]                    -0.525581      -40.878834   2.579172e-35
+islegendary[T.True]                        1.028798      179.769958   7.280243e-34
+C(extRarity)[T.Uncommon]                   0.408022       50.383971   2.173475e-28
+C(source_set_name)[T.Emerald]              0.758617      113.532101   1.293716e-22
+C(subTypeName)[T.Reverse Holofoil]         0.564317       75.824667   1.109046e-18
+C(extRarity)[T.Secret Rare]                2.321909      919.511802   3.821746e-16
+C(extRarity)[T.Ultra Rare]                 2.921602     1757.101432   1.807735e-14
+C(source_set_name)[T.DeltaSpecies]         0.672535       95.919840   2.921938e-14
+C(source_set_name)[T.Deoxys]               0.516864       67.676122   3.906750e-12
+C(source_set_name)[T.TeamMagmavsTeamAqua]  0.509240       66.402549   1.639559e-11
+isdeltaspecies[T.True]                     0.433980       54.338866   2.379777e-11
+ismythical[T.True]                         1.112849      204.301457   1.320178e-10
+iseeveelution[T.True]                      0.737784      109.129574   8.514176e-09
+C(generation)[T.Gen 2]                    -0.278355      -24.297199   1.239075e-08
+C(source_set_name)[T.UnseenForces]         0.363925       43.896672   9.068122e-07
+isgoldstar[T.True]                         1.720207      458.568461   4.356413e-05
+C(source_set_name)[T.FireRedAndLeafGreen]  0.305013       35.664271   1.577436e-04
+C(source_set_name)[T.Sandstorm]            0.245269       27.796551   1.113075e-03
+C(source_set_name)[T.LegendMaker]          0.252351       28.704725   1.186086e-03
+C(source_set_name)[T.HolonPhantoms]        0.234291       26.401240   1.940775e-03
+C(source_set_name)[T.Dragon]               0.156630       16.956307   4.040355e-02
+C(source_set_name)[T.HiddenLegends]        0.134093       14.349861   1.023954e-01
+C(generation)[T.Unknown]                   0.116890       12.399573   5.110175e-01
+C(source_set_name)[T.PowerKeepers]         0.042073        4.297102   5.505151e-01
+C(source_set_name)[T.DragonFrontiers]     -0.037279       -3.659305   6.529008e-01
+C(source_set_name)[T.RubyandSapphire]      0.026068        2.641049   6.860979e-01
+isEXcard[T.True]                          -0.003389       -0.338282   9.926998e-01
+
+
+MODEL COMPARISON
+====================================================================================================
+                              model  nobs  r_squared  adj_r_squared         aic         bic
+        Model 1 Structural Controls  3256   0.749426       0.747643 8618.221947 8764.340061
+Model 2 Controls + Intrinsic Traits  3256   0.811863       0.809877 7707.107717 7920.196632

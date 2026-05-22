@@ -48,6 +48,8 @@ SET_INFO = {
     "me01_mega_evolution": ("Mega Evolution", "Mega Evolution"),
     "me02_phantasmal_flames": ("Phantasmal Flames", "Mega Evolution"),
     "me_ascended_heroes": ("Ascended Heroes", "Mega Evolution"),
+
+    "sv_promos": ("Scarlet & Violet Promos", "Scarlet & Violet")
 }
 
 COLUMN_ORDER = [
