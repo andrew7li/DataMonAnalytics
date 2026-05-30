@@ -1,0 +1,766 @@
+SCARLET/VIOLET PRICECHARTING GRADED SALES REGRESSION
+====================================================================================================
+Input file: /home/nikai/Code/PokemonTCGAnalysis/data/processed/sv_pricecharting_sales_graded_clean.csv
+Rows used after dropping invalid prices: 106872
+Columns: 38
+Price column: salePrice
+Log price column: logSalePrice
+
+PRICE SUMMARY
+----------------------------------------------------------------------------------------------------
+count    106872.000000
+mean         79.098967
+std         273.947432
+min           0.010000
+25%          13.990000
+50%          24.990000
+75%          60.000000
+max       17000.000000
+
+GRADE COUNTS
+----------------------------------------------------------------------------------------------------
+grade
+Grade 9    41322
+PSA 10     40431
+Grade 8    20061
+Grade 7     3569
+Grade 6      977
+Grade 5      293
+Grade 4      116
+Grade 1       59
+Grade 3       32
+Grade 2       12
+
+
+MODEL 1: INTRINSIC CARD FEATURES ONLY
+====================================================================================================
+Formula:
+logSalePrice ~ C(cardRarity) + C(finishType) + C(patternType) + C(setName) + C(supertype) + C(cardSubType) + C(stage) + C(pokemonGeneration) + isLegendary + isMythical + isStarter + isEeveelution + isWaifuTrainer + isExCard + isParadoxPokemon + isPaldeanStarter + isSVBoxLegendary + isSecretNumber + isTrainerPokemon + isPromo + isMasterBall + isTerastal
+
+Model summary:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:           logSalePrice   R-squared:                       0.321
+Model:                            OLS   Adj. R-squared:                  0.321
+Method:                 Least Squares   F-statistic:                 2.184e+04
+Date:                Fri, 29 May 2026   Prob (F-statistic):               0.00
+Time:                        23:55:32   Log-Likelihood:            -1.4808e+05
+No. Observations:              106872   AIC:                         2.963e+05
+Df Residuals:                  106804   BIC:                         2.969e+05
+Df Model:                          67                                         
+Covariance Type:                  HC3                                         
+==============================================================================================================
+                                                 coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------
+Intercept                                      2.3193     16.506      0.141      0.888     -30.032      34.670
+C(cardRarity)[T.Black White Rare]              3.5350      0.050     70.368      0.000       3.437       3.633
+C(cardRarity)[T.Common]                       -0.2965      0.051     -5.774      0.000      -0.397      -0.196
+C(cardRarity)[T.Double Rare]                  -0.0769      0.033     -2.328      0.020      -0.142      -0.012
+C(cardRarity)[T.Hyper Rare]                    0.6324      0.031     20.343      0.000       0.572       0.693
+C(cardRarity)[T.Illustration Rare]             0.6863      0.033     20.793      0.000       0.622       0.751
+C(cardRarity)[T.Mega Attack Rare]              0.5899      0.063      9.350      0.000       0.466       0.714
+C(cardRarity)[T.Mega Hyper Rare]               2.6220      0.056     46.800      0.000       2.512       2.732
+C(cardRarity)[T.Rare]                         -0.0253      0.035     -0.725      0.468      -0.094       0.043
+C(cardRarity)[T.Special Illustration Rare]     1.4484      0.033     43.721      0.000       1.383       1.513
+C(cardRarity)[T.Ultra Rare]                    0.3767      0.032     11.671      0.000       0.313       0.440
+C(cardRarity)[T.Uncommon]                     -0.1502      0.052     -2.910      0.004      -0.251      -0.049
+C(cardRarity)[T.missing]                       0.1666      7.055      0.024      0.981     -13.661      13.994
+C(finishType)[T.Normal]                        0.4232      0.040     10.485      0.000       0.344       0.502
+C(finishType)[T.Reverse Holofoil]              0.0586      0.036      1.609      0.108      -0.013       0.130
+C(finishType)[T.missing]                       0.1666      7.055      0.024      0.981     -13.661      13.994
+C(patternType)[T.none]                         0.6077     28.220      0.022      0.983     -54.702      55.917
+C(patternType)[T.pokeball]                     1.5451     51.780      0.030      0.976     -99.943     103.033
+C(setName)[T.Black Bolt]                      -1.1827      0.031    -38.728      0.000      -1.243      -1.123
+C(setName)[T.Destined Rivals]                 -1.1788      0.028    -42.666      0.000      -1.233      -1.125
+C(setName)[T.Journey Together]                -1.3977      0.029    -48.168      0.000      -1.455      -1.341
+C(setName)[T.Mega Evolution]                  -1.4540      0.027    -53.254      0.000      -1.508      -1.400
+C(setName)[T.Obsidian Flames]                 -1.6702      0.028    -58.661      0.000      -1.726      -1.614
+C(setName)[T.Paldea Evolved]                  -1.3962      0.028    -49.742      0.000      -1.451      -1.341
+C(setName)[T.Paradox Rift]                    -1.3919      0.027    -50.965      0.000      -1.445      -1.338
+C(setName)[T.Phantasmal Flames]               -1.4333      0.030    -48.422      0.000      -1.491      -1.375
+C(setName)[T.Prismatic Evolutions]            -1.3769      0.028    -49.751      0.000      -1.431      -1.323
+C(setName)[T.Scarlet & Violet 151]            -1.4601      0.028    -51.466      0.000      -1.516      -1.405
+C(setName)[T.Scarlet & Violet Base]           -1.4570      0.029    -50.856      0.000      -1.513      -1.401
+C(setName)[T.Shrouded Fable]                  -1.3609      0.030    -45.572      0.000      -1.419      -1.302
+C(setName)[T.Stellar Crown]                   -1.4548      0.028    -51.709      0.000      -1.510      -1.400
+C(setName)[T.Surging Sparks]                  -1.4567      0.027    -53.449      0.000      -1.510      -1.403
+C(setName)[T.Temporal Forces]                 -1.3020      0.028    -46.926      0.000      -1.356      -1.248
+C(setName)[T.Twilight Masquerade]             -1.3873      0.028    -50.086      0.000      -1.442      -1.333
+C(setName)[T.White Flare]                     -1.1884      0.030    -39.246      0.000      -1.248      -1.129
+C(supertype)[T.missing]                        0.1666      7.055      0.024      0.981     -13.661      13.994
+C(supertype)[T.pokemon]                        1.5686     10.649      0.147      0.883     -19.303      22.440
+C(supertype)[T.trainer]                       -0.5276      0.073     -7.263      0.000      -0.670      -0.385
+C(cardSubType)[T.Basic Energy]                -0.7677      0.124     -6.172      0.000      -1.011      -0.524
+C(cardSubType)[T.Basic Lightning Energy]      -0.8492      0.123     -6.921      0.000      -1.090      -0.609
+C(cardSubType)[T.Basic Metal Energy]          -0.4201      0.142     -2.959      0.003      -0.698      -0.142
+C(cardSubType)[T.Colorless]                    0.0817      1.065      0.077      0.939      -2.006       2.169
+C(cardSubType)[T.Darkness]                     0.2504      1.065      0.235      0.814      -1.837       2.338
+C(cardSubType)[T.Dragon]                       0.2977      1.065      0.280      0.780      -1.790       2.385
+C(cardSubType)[T.Energy]                      -0.8215      0.101     -8.105      0.000      -1.020      -0.623
+C(cardSubType)[T.Fighting]                     0.1360      1.065      0.128      0.898      -1.951       2.223
+C(cardSubType)[T.Fire]                         0.1323      1.065      0.124      0.901      -1.955       2.220
+C(cardSubType)[T.Grass]                       -0.0388      1.065     -0.036      0.971      -2.126       2.048
+C(cardSubType)[T.Item]                        -0.0193      0.026     -0.749      0.454      -0.070       0.031
+C(cardSubType)[T.Lightning]                    0.2475      1.065      0.232      0.816      -1.840       2.335
+C(cardSubType)[T.Metal]                        0.0056      1.065      0.005      0.996      -2.082       2.093
+C(cardSubType)[T.Psychic]                      0.2999      1.065      0.282      0.778      -1.787       2.387
+C(cardSubType)[T.Special Multi Energy]        -0.5221      0.135     -3.868      0.000      -0.787      -0.258
+C(cardSubType)[T.Special Rainbow Energy]      -0.6803      0.109     -6.246      0.000      -0.894      -0.467
+C(cardSubType)[T.Stadium]                     -0.1050      0.031     -3.346      0.001      -0.167      -0.044
+C(cardSubType)[T.Supporter]                   -0.2359      0.024     -9.699      0.000      -0.284      -0.188
+C(cardSubType)[T.Tool]                        -0.1674      0.035     -4.741      0.000      -0.237      -0.098
+C(cardSubType)[T.Water]                        0.1562      1.065      0.147      0.883      -1.931       2.243
+C(cardSubType)[T.missing]                      0.1666      7.055      0.024      0.981     -13.661      13.994
+C(stage)[T.Stage 1]                           -0.1037      0.009    -12.007      0.000      -0.121      -0.087
+C(stage)[T.Stage 2]                            0.0146      0.012      1.241      0.214      -0.008       0.038
+C(stage)[T.missing]                            0.7507      5.857      0.128      0.898     -10.729      12.230
+C(pokemonGeneration)[T.gen2]                  -0.1782      0.015    -11.761      0.000      -0.208      -0.149
+C(pokemonGeneration)[T.gen3]                  -0.3856      0.015    -25.989      0.000      -0.415      -0.356
+C(pokemonGeneration)[T.gen4]                  -0.3858      0.015    -26.129      0.000      -0.415      -0.357
+C(pokemonGeneration)[T.gen5]                  -0.5719      0.017    -34.479      0.000      -0.604      -0.539
+C(pokemonGeneration)[T.gen6]                  -0.5130      0.020    -25.849      0.000      -0.552      -0.474
+C(pokemonGeneration)[T.gen7]                  -0.5956      0.020    -30.146      0.000      -0.634      -0.557
+C(pokemonGeneration)[T.gen8]                  -0.6701      0.017    -39.487      0.000      -0.703      -0.637
+C(pokemonGeneration)[T.gen9]                  -0.6774      0.012    -56.133      0.000      -0.701      -0.654
+C(pokemonGeneration)[T.missing]                0.7507      5.857      0.128      0.898     -10.729      12.230
+isLegendary[T.True]                            0.0598      0.012      5.087      0.000       0.037       0.083
+isMythical[T.True]                             0.0022      0.022      0.102      0.919      -0.041       0.045
+isStarter[T.True]                              0.3832      0.014     26.912      0.000       0.355       0.411
+isEeveelution[T.True]                          0.4885      0.018     27.325      0.000       0.453       0.524
+isWaifuTrainer[T.True]                         0.6416      0.035     18.565      0.000       0.574       0.709
+isExCard[T.True]                                    0          0        nan        nan           0           0
+isParadoxPokemon[T.True]                            0          0        nan        nan           0           0
+isPaldeanStarter[T.True]                            0          0        nan        nan           0           0
+isSVBoxLegendary[T.True]                            0          0        nan        nan           0           0
+isSecretNumber[T.True]                              0          0        nan        nan           0           0
+isTrainerPokemon[T.True]                            0          0        nan        nan           0           0
+isPromo[T.True]                                     0          0        nan        nan           0           0
+isMasterBall[T.True]                                0          0        nan        nan           0           0
+isTerastal[T.True]                                  0          0        nan        nan           0           0
+==============================================================================
+Omnibus:                     3528.887   Durbin-Watson:                   0.436
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             4350.762
+Skew:                           0.393   Prob(JB):                         0.00
+Kurtosis:                       3.599   Cond. No.                     3.21e+16
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The smallest eigenvalue is 3.48e-28. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+
+Coefficients sorted by p-value:
+                                                coef        p_value    std_err   conf_low   conf_high
+C(cardRarity)[T.Black White Rare]           3.534992   0.000000e+00   0.050236   3.436532    3.633452
+C(cardRarity)[T.Mega Hyper Rare]            2.622003   0.000000e+00   0.056026   2.512195    2.731812
+C(cardRarity)[T.Special Illustration Rare]  1.448387   0.000000e+00   0.033128   1.383457    1.513316
+C(setName)[T.Stellar Crown]                -1.454845   0.000000e+00   0.028135  -1.509990   -1.399701
+C(setName)[T.Scarlet & Violet 151]         -1.460121   0.000000e+00   0.028371  -1.515727   -1.404515
+C(setName)[T.Prismatic Evolutions]         -1.376942   0.000000e+00   0.027677  -1.431188   -1.322696
+C(setName)[T.Shrouded Fable]               -1.360855   0.000000e+00   0.029862  -1.419383   -1.302327
+C(setName)[T.Scarlet & Violet Base]        -1.456978   0.000000e+00   0.028649  -1.513130   -1.400826
+C(setName)[T.Paradox Rift]                 -1.391852   0.000000e+00   0.027310  -1.445378   -1.338326
+C(setName)[T.Phantasmal Flames]            -1.433339   0.000000e+00   0.029601  -1.491356   -1.375322
+C(setName)[T.Paldea Evolved]               -1.396218   0.000000e+00   0.028069  -1.451232   -1.341204
+C(setName)[T.Obsidian Flames]              -1.670213   0.000000e+00   0.028472  -1.726018   -1.614408
+C(setName)[T.Journey Together]             -1.397728   0.000000e+00   0.029018  -1.454602   -1.340855
+C(setName)[T.Mega Evolution]               -1.454013   0.000000e+00   0.027304  -1.507527   -1.400500
+C(setName)[T.Black Bolt]                   -1.182722   0.000000e+00   0.030539  -1.242577   -1.122866
+C(setName)[T.Destined Rivals]              -1.178760   0.000000e+00   0.027627  -1.232908   -1.124611
+C(setName)[T.Surging Sparks]               -1.456739   0.000000e+00   0.027255  -1.510158   -1.403321
+C(setName)[T.White Flare]                  -1.188403   0.000000e+00   0.030281  -1.247752   -1.129053
+C(setName)[T.Twilight Masquerade]          -1.387264   0.000000e+00   0.027697  -1.441550   -1.332978
+C(setName)[T.Temporal Forces]              -1.302000   0.000000e+00   0.027746  -1.356381   -1.247619
+C(pokemonGeneration)[T.gen8]               -0.670084   0.000000e+00   0.016970  -0.703345   -0.636824
+C(pokemonGeneration)[T.gen9]               -0.677444   0.000000e+00   0.012069  -0.701098   -0.653790
+C(pokemonGeneration)[T.gen5]               -0.571903  1.679767e-260   0.016587  -0.604413   -0.539393
+C(pokemonGeneration)[T.gen7]               -0.595602  1.221483e-199   0.019757  -0.634326   -0.556878
+isEeveelution[T.True]                       0.488470  2.147841e-164   0.017876   0.453433    0.523507
+isStarter[T.True]                           0.383245  1.589050e-159   0.014241   0.355334    0.411157
+C(pokemonGeneration)[T.gen4]               -0.385770  1.694437e-150   0.014764  -0.414706   -0.356833
+C(pokemonGeneration)[T.gen3]               -0.385571  6.590396e-149   0.014836  -0.414648   -0.356493
+C(pokemonGeneration)[T.gen6]               -0.513013  2.497114e-147   0.019847  -0.551911   -0.474114
+C(cardRarity)[T.Illustration Rare]          0.686271   5.036822e-96   0.033005   0.621581    0.750960
+C(cardRarity)[T.Hyper Rare]                 0.632448   5.332575e-92   0.031089   0.571515    0.693381
+isWaifuTrainer[T.True]                      0.641558   6.116644e-77   0.034557   0.573828    0.709287
+C(stage)[T.Stage 1]                        -0.103689   3.270787e-33   0.008636  -0.120615   -0.086763
+C(pokemonGeneration)[T.gen2]               -0.178220   6.220438e-32   0.015154  -0.207921   -0.148519
+C(cardRarity)[T.Ultra Rare]                 0.376725   1.786973e-31   0.032278   0.313461    0.439989
+C(finishType)[T.Normal]                     0.423184   1.016339e-25   0.040362   0.344075    0.502293
+C(cardSubType)[T.Supporter]                -0.235884   3.054436e-22   0.024321  -0.283553   -0.188215
+C(cardRarity)[T.Mega Attack Rare]           0.589930   8.802980e-21   0.063097   0.466262    0.713598
+C(cardSubType)[T.Energy]                   -0.821457   5.264779e-16   0.101349  -1.020097   -0.622816
+C(supertype)[T.trainer]                    -0.527620   3.776013e-13   0.072641  -0.669995   -0.385246
+C(cardSubType)[T.Basic Lightning Energy]   -0.849212   4.497836e-12   0.122708  -1.089716   -0.608709
+C(cardSubType)[T.Special Rainbow Energy]   -0.680338   4.212801e-10   0.108925  -0.893827   -0.466849
+C(cardSubType)[T.Basic Energy]             -0.767672   6.756911e-10   0.124386  -1.011465   -0.523880
+C(cardRarity)[T.Common]                    -0.296526   7.721744e-09   0.051352  -0.397173   -0.195879
+isLegendary[T.True]                         0.059757   3.630176e-07   0.011746   0.036735    0.082779
+C(cardSubType)[T.Tool]                     -0.167413   2.126788e-06   0.035312  -0.236623   -0.098203
+C(cardSubType)[T.Special Multi Energy]     -0.522140   1.095975e-04   0.134979  -0.786695   -0.257586
+C(cardSubType)[T.Stadium]                  -0.105038   8.212954e-04   0.031397  -0.166574   -0.043502
+C(cardSubType)[T.Basic Metal Energy]       -0.420130   3.085127e-03   0.141978  -0.698402   -0.141859
+C(cardRarity)[T.Uncommon]                  -0.150240   3.619580e-03   0.051637  -0.251447   -0.049033
+C(cardRarity)[T.Double Rare]               -0.076935   1.989552e-02   0.033043  -0.141698   -0.012171
+C(finishType)[T.Reverse Holofoil]           0.058562   1.075968e-01   0.036394  -0.012770    0.129893
+C(stage)[T.Stage 2]                         0.014613   2.144396e-01   0.011771  -0.008457    0.037683
+C(cardSubType)[T.Item]                     -0.019285   4.539951e-01   0.025756  -0.069766    0.031195
+C(cardRarity)[T.Rare]                      -0.025283   4.681830e-01   0.034853  -0.093593    0.043026
+C(cardSubType)[T.Psychic]                   0.299909   7.782332e-01   1.064933  -1.787322    2.387140
+C(cardSubType)[T.Dragon]                    0.297746   7.798021e-01   1.064990  -1.789595    2.385088
+C(cardSubType)[T.Darkness]                  0.250387   8.141174e-01   1.064942  -1.836862    2.337635
+C(cardSubType)[T.Lightning]                 0.247514   8.162127e-01   1.064947  -1.839744    2.334771
+C(supertype)[T.pokemon]                     1.568580   8.828960e-01  10.648956 -19.302989   22.440150
+C(cardSubType)[T.Water]                     0.156232   8.833643e-01   1.064933  -1.930999    2.243463
+Intercept                                   2.319323   8.882529e-01  16.505844 -30.031536   34.670182
+C(pokemonGeneration)[T.missing]             0.750743   8.980076e-01   5.857002 -10.728771   12.230256
+C(stage)[T.missing]                         0.750743   8.980076e-01   5.857002 -10.728771   12.230256
+C(cardSubType)[T.Fighting]                  0.135971   8.984030e-01   1.064946  -1.951285    2.223228
+C(cardSubType)[T.Fire]                      0.132342   9.011007e-01   1.064944  -1.954910    2.219593
+isMythical[T.True]                          0.002220   9.189149e-01   0.021808  -0.040523    0.044963
+C(cardSubType)[T.Colorless]                 0.081694   9.388520e-01   1.064939  -2.005547    2.168936
+C(cardSubType)[T.Grass]                    -0.038816   9.709243e-01   1.064936  -2.126053    2.048421
+C(patternType)[T.pokeball]                  1.545072   9.761955e-01  51.780386 -99.942619  103.032763
+C(finishType)[T.missing]                    0.166571   9.811632e-01   7.054947 -13.660870   13.994013
+C(cardRarity)[T.missing]                    0.166571   9.811632e-01   7.054947 -13.660870   13.994013
+C(cardSubType)[T.missing]                   0.166571   9.811632e-01   7.054947 -13.660870   13.994013
+C(supertype)[T.missing]                     0.166571   9.811632e-01   7.054947 -13.660870   13.994013
+C(patternType)[T.none]                      0.607679   9.828198e-01  28.219645 -54.701809   55.917168
+C(cardSubType)[T.Metal]                     0.005601   9.958036e-01   1.064978  -2.081718    2.092921
+isExCard[T.True]                            0.000000            NaN   0.000000   0.000000    0.000000
+isParadoxPokemon[T.True]                    0.000000            NaN   0.000000   0.000000    0.000000
+isPaldeanStarter[T.True]                    0.000000            NaN   0.000000   0.000000    0.000000
+isSVBoxLegendary[T.True]                    0.000000            NaN   0.000000   0.000000    0.000000
+isSecretNumber[T.True]                      0.000000            NaN   0.000000   0.000000    0.000000
+isTrainerPokemon[T.True]                    0.000000            NaN   0.000000   0.000000    0.000000
+isPromo[T.True]                             0.000000            NaN   0.000000   0.000000    0.000000
+isMasterBall[T.True]                        0.000000            NaN   0.000000   0.000000    0.000000
+isTerastal[T.True]                          0.000000            NaN   0.000000   0.000000    0.000000
+
+Approximate percent change from log coefficient:
+                                                coef  percent_change        p_value
+C(cardRarity)[T.Black White Rare]           3.534992     3329.472493   0.000000e+00
+C(cardRarity)[T.Mega Hyper Rare]            2.622003     1276.326882   0.000000e+00
+C(cardRarity)[T.Special Illustration Rare]  1.448387      325.624269   0.000000e+00
+C(setName)[T.Stellar Crown]                -1.454845      -76.656357   0.000000e+00
+C(setName)[T.Scarlet & Violet 151]         -1.460121      -76.779188   0.000000e+00
+C(setName)[T.Prismatic Evolutions]         -1.376942      -74.765096   0.000000e+00
+C(setName)[T.Shrouded Fable]               -1.360855      -74.355853   0.000000e+00
+C(setName)[T.Scarlet & Violet Base]        -1.456978      -76.706081   0.000000e+00
+C(setName)[T.Paradox Rift]                 -1.391852      -75.138554   0.000000e+00
+C(setName)[T.Phantasmal Flames]            -1.433339      -76.148876   0.000000e+00
+C(setName)[T.Paldea Evolved]               -1.396218      -75.246861   0.000000e+00
+C(setName)[T.Obsidian Flames]              -1.670213      -81.179296   0.000000e+00
+C(setName)[T.Journey Together]             -1.397728      -75.284218   0.000000e+00
+C(setName)[T.Mega Evolution]               -1.454013      -76.636926   0.000000e+00
+C(setName)[T.Black Bolt]                   -1.182722      -69.355647   0.000000e+00
+C(setName)[T.Destined Rivals]              -1.178760      -69.233987   0.000000e+00
+C(setName)[T.Surging Sparks]               -1.456739      -76.700525   0.000000e+00
+C(setName)[T.White Flare]                  -1.188403      -69.529238   0.000000e+00
+C(setName)[T.Twilight Masquerade]          -1.387264      -75.024226   0.000000e+00
+C(setName)[T.Temporal Forces]              -1.302000      -72.801270   0.000000e+00
+C(pokemonGeneration)[T.gen8]               -0.670084      -48.833459   0.000000e+00
+C(pokemonGeneration)[T.gen9]               -0.677444      -49.208655   0.000000e+00
+C(pokemonGeneration)[T.gen5]               -0.571903      -43.554961  1.679767e-260
+C(pokemonGeneration)[T.gen7]               -0.595602      -44.876943  1.221483e-199
+isEeveelution[T.True]                       0.488470       62.982041  2.147841e-164
+isStarter[T.True]                           0.383245       46.703787  1.589050e-159
+C(pokemonGeneration)[T.gen4]               -0.385770      -32.007292  1.694437e-150
+C(pokemonGeneration)[T.gen3]               -0.385571      -31.993753  6.590396e-149
+C(pokemonGeneration)[T.gen6]               -0.513013      -40.131074  2.497114e-147
+C(cardRarity)[T.Illustration Rare]          0.686271       98.629433   5.036822e-96
+C(cardRarity)[T.Hyper Rare]                 0.632448       88.221302   5.332575e-92
+isWaifuTrainer[T.True]                      0.641558       89.943722   6.116644e-77
+C(stage)[T.Stage 1]                        -0.103689       -9.849467   3.270787e-33
+C(pokemonGeneration)[T.gen2]               -0.178220      -16.324156   6.220438e-32
+C(cardRarity)[T.Ultra Rare]                 0.376725       45.750343   1.786973e-31
+C(finishType)[T.Normal]                     0.423184       52.681508   1.016339e-25
+C(cardSubType)[T.Supporter]                -0.235884      -21.012785   3.054436e-22
+C(cardRarity)[T.Mega Attack Rare]           0.589930       80.386221   8.802980e-21
+C(cardSubType)[T.Energy]                   -0.821457      -56.020956   5.264779e-16
+C(supertype)[T.trainer]                    -0.527620      -40.999270   3.776013e-13
+C(cardSubType)[T.Basic Lightning Energy]   -0.849212      -57.224834   4.497836e-12
+C(cardSubType)[T.Special Rainbow Energy]   -0.680338      -49.355439   4.212801e-10
+C(cardSubType)[T.Basic Energy]             -0.767672      -53.590798   6.756911e-10
+C(cardRarity)[T.Common]                    -0.296526      -25.660365   7.721744e-09
+isLegendary[T.True]                         0.059757        6.157834   3.630176e-07
+C(cardSubType)[T.Tool]                     -0.167413      -15.414981   2.126788e-06
+C(cardSubType)[T.Special Multi Energy]     -0.522140      -40.675040   1.095975e-04
+C(cardSubType)[T.Stadium]                  -0.105038       -9.970968   8.212954e-04
+C(cardSubType)[T.Basic Metal Energy]       -0.420130      -34.303887   3.085127e-03
+C(cardRarity)[T.Uncommon]                  -0.150240      -13.949864   3.619580e-03
+C(cardRarity)[T.Double Rare]               -0.076935       -7.404956   1.989552e-02
+C(finishType)[T.Reverse Holofoil]           0.058562        6.031034   1.075968e-01
+C(stage)[T.Stage 2]                         0.014613        1.471990   2.144396e-01
+C(cardSubType)[T.Item]                     -0.019285       -1.910041   4.539951e-01
+C(cardRarity)[T.Rare]                      -0.025283       -2.496649   4.681830e-01
+C(cardSubType)[T.Psychic]                   0.299909       34.973577   7.782332e-01
+C(cardSubType)[T.Dragon]                    0.297746       34.682031   7.798021e-01
+C(cardSubType)[T.Darkness]                  0.250387       28.452209   8.141174e-01
+C(cardSubType)[T.Lightning]                 0.247514       28.083705   8.162127e-01
+C(supertype)[T.pokemon]                     1.568580      379.982903   8.828960e-01
+C(cardSubType)[T.Water]                     0.156232       16.909726   8.833643e-01
+Intercept                                   2.319323      916.878757   8.882529e-01
+C(pokemonGeneration)[T.missing]             0.750743      111.857287   8.980076e-01
+C(stage)[T.missing]                         0.750743      111.857287   8.980076e-01
+C(cardSubType)[T.Fighting]                  0.135971       14.564901   8.984030e-01
+C(cardSubType)[T.Fire]                      0.132342       14.149824   9.011007e-01
+isMythical[T.True]                          0.002220        0.222253   9.189149e-01
+C(cardSubType)[T.Colorless]                 0.081694        8.512418   9.388520e-01
+C(cardSubType)[T.Grass]                    -0.038816       -3.807230   9.709243e-01
+C(patternType)[T.pokeball]                  1.545072      368.831009   9.761955e-01
+C(finishType)[T.missing]                    0.166571       18.124793   9.811632e-01
+C(cardRarity)[T.missing]                    0.166571       18.124793   9.811632e-01
+C(cardSubType)[T.missing]                   0.166571       18.124793   9.811632e-01
+C(supertype)[T.missing]                     0.166571       18.124793   9.811632e-01
+C(patternType)[T.none]                      0.607679       83.616534   9.828198e-01
+C(cardSubType)[T.Metal]                     0.005601        0.561686   9.958036e-01
+isExCard[T.True]                            0.000000        0.000000            NaN
+isParadoxPokemon[T.True]                    0.000000        0.000000            NaN
+isPaldeanStarter[T.True]                    0.000000        0.000000            NaN
+isSVBoxLegendary[T.True]                    0.000000        0.000000            NaN
+isSecretNumber[T.True]                      0.000000        0.000000            NaN
+isTrainerPokemon[T.True]                    0.000000        0.000000            NaN
+isPromo[T.True]                             0.000000        0.000000            NaN
+isMasterBall[T.True]                        0.000000        0.000000            NaN
+isTerastal[T.True]                          0.000000        0.000000            NaN
+
+Most positive estimated effects:
+                                                coef        p_value    std_err   conf_low   conf_high  percent_change
+C(cardRarity)[T.Black White Rare]           3.534992   0.000000e+00   0.050236   3.436532    3.633452     3329.472493
+C(cardRarity)[T.Mega Hyper Rare]            2.622003   0.000000e+00   0.056026   2.512195    2.731812     1276.326882
+Intercept                                   2.319323   8.882529e-01  16.505844 -30.031536   34.670182      916.878757
+C(supertype)[T.pokemon]                     1.568580   8.828960e-01  10.648956 -19.302989   22.440150      379.982903
+C(patternType)[T.pokeball]                  1.545072   9.761955e-01  51.780386 -99.942619  103.032763      368.831009
+C(cardRarity)[T.Special Illustration Rare]  1.448387   0.000000e+00   0.033128   1.383457    1.513316      325.624269
+C(pokemonGeneration)[T.missing]             0.750743   8.980076e-01   5.857002 -10.728771   12.230256      111.857287
+C(stage)[T.missing]                         0.750743   8.980076e-01   5.857002 -10.728771   12.230256      111.857287
+C(cardRarity)[T.Illustration Rare]          0.686271   5.036822e-96   0.033005   0.621581    0.750960       98.629433
+isWaifuTrainer[T.True]                      0.641558   6.116644e-77   0.034557   0.573828    0.709287       89.943722
+C(cardRarity)[T.Hyper Rare]                 0.632448   5.332575e-92   0.031089   0.571515    0.693381       88.221302
+C(patternType)[T.none]                      0.607679   9.828198e-01  28.219645 -54.701809   55.917168       83.616534
+C(cardRarity)[T.Mega Attack Rare]           0.589930   8.802980e-21   0.063097   0.466262    0.713598       80.386221
+isEeveelution[T.True]                       0.488470  2.147841e-164   0.017876   0.453433    0.523507       62.982041
+C(finishType)[T.Normal]                     0.423184   1.016339e-25   0.040362   0.344075    0.502293       52.681508
+isStarter[T.True]                           0.383245  1.589050e-159   0.014241   0.355334    0.411157       46.703787
+C(cardRarity)[T.Ultra Rare]                 0.376725   1.786973e-31   0.032278   0.313461    0.439989       45.750343
+C(cardSubType)[T.Psychic]                   0.299909   7.782332e-01   1.064933  -1.787322    2.387140       34.973577
+C(cardSubType)[T.Dragon]                    0.297746   7.798021e-01   1.064990  -1.789595    2.385088       34.682031
+C(cardSubType)[T.Darkness]                  0.250387   8.141174e-01   1.064942  -1.836862    2.337635       28.452209
+C(cardSubType)[T.Lightning]                 0.247514   8.162127e-01   1.064947  -1.839744    2.334771       28.083705
+C(finishType)[T.missing]                    0.166571   9.811632e-01   7.054947 -13.660870   13.994013       18.124793
+C(cardRarity)[T.missing]                    0.166571   9.811632e-01   7.054947 -13.660870   13.994013       18.124793
+C(cardSubType)[T.missing]                   0.166571   9.811632e-01   7.054947 -13.660870   13.994013       18.124793
+C(supertype)[T.missing]                     0.166571   9.811632e-01   7.054947 -13.660870   13.994013       18.124793
+
+Most negative estimated effects:
+                                              coef        p_value   std_err  conf_low  conf_high  percent_change
+C(setName)[T.Obsidian Flames]            -1.670213   0.000000e+00  0.028472 -1.726018  -1.614408      -81.179296
+C(setName)[T.Scarlet & Violet 151]       -1.460121   0.000000e+00  0.028371 -1.515727  -1.404515      -76.779188
+C(setName)[T.Scarlet & Violet Base]      -1.456978   0.000000e+00  0.028649 -1.513130  -1.400826      -76.706081
+C(setName)[T.Surging Sparks]             -1.456739   0.000000e+00  0.027255 -1.510158  -1.403321      -76.700525
+C(setName)[T.Stellar Crown]              -1.454845   0.000000e+00  0.028135 -1.509990  -1.399701      -76.656357
+C(setName)[T.Mega Evolution]             -1.454013   0.000000e+00  0.027304 -1.507527  -1.400500      -76.636926
+C(setName)[T.Phantasmal Flames]          -1.433339   0.000000e+00  0.029601 -1.491356  -1.375322      -76.148876
+C(setName)[T.Journey Together]           -1.397728   0.000000e+00  0.029018 -1.454602  -1.340855      -75.284218
+C(setName)[T.Paldea Evolved]             -1.396218   0.000000e+00  0.028069 -1.451232  -1.341204      -75.246861
+C(setName)[T.Paradox Rift]               -1.391852   0.000000e+00  0.027310 -1.445378  -1.338326      -75.138554
+C(setName)[T.Twilight Masquerade]        -1.387264   0.000000e+00  0.027697 -1.441550  -1.332978      -75.024226
+C(setName)[T.Prismatic Evolutions]       -1.376942   0.000000e+00  0.027677 -1.431188  -1.322696      -74.765096
+C(setName)[T.Shrouded Fable]             -1.360855   0.000000e+00  0.029862 -1.419383  -1.302327      -74.355853
+C(setName)[T.Temporal Forces]            -1.302000   0.000000e+00  0.027746 -1.356381  -1.247619      -72.801270
+C(setName)[T.White Flare]                -1.188403   0.000000e+00  0.030281 -1.247752  -1.129053      -69.529238
+C(setName)[T.Black Bolt]                 -1.182722   0.000000e+00  0.030539 -1.242577  -1.122866      -69.355647
+C(setName)[T.Destined Rivals]            -1.178760   0.000000e+00  0.027627 -1.232908  -1.124611      -69.233987
+C(cardSubType)[T.Basic Lightning Energy] -0.849212   4.497836e-12  0.122708 -1.089716  -0.608709      -57.224834
+C(cardSubType)[T.Energy]                 -0.821457   5.264779e-16  0.101349 -1.020097  -0.622816      -56.020956
+C(cardSubType)[T.Basic Energy]           -0.767672   6.756911e-10  0.124386 -1.011465  -0.523880      -53.590798
+C(cardSubType)[T.Special Rainbow Energy] -0.680338   4.212801e-10  0.108925 -0.893827  -0.466849      -49.355439
+C(pokemonGeneration)[T.gen9]             -0.677444   0.000000e+00  0.012069 -0.701098  -0.653790      -49.208655
+C(pokemonGeneration)[T.gen8]             -0.670084   0.000000e+00  0.016970 -0.703345  -0.636824      -48.833459
+C(pokemonGeneration)[T.gen7]             -0.595602  1.221483e-199  0.019757 -0.634326  -0.556878      -44.876943
+C(pokemonGeneration)[T.gen5]             -0.571903  1.679767e-260  0.016587 -0.604413  -0.539393      -43.554961
+
+
+MODEL 2: INTRINSIC CARD FEATURES + GRADE
+====================================================================================================
+Formula:
+logSalePrice ~ C(grade) + C(cardRarity) + C(finishType) + C(patternType) + C(setName) + C(supertype) + C(cardSubType) + C(stage) + C(pokemonGeneration) + isLegendary + isMythical + isStarter + isEeveelution + isWaifuTrainer + isExCard + isParadoxPokemon + isPaldeanStarter + isSVBoxLegendary + isSecretNumber + isTrainerPokemon + isPromo + isMasterBall + isTerastal
+
+Model summary:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:           logSalePrice   R-squared:                       0.685
+Model:                            OLS   Adj. R-squared:                  0.685
+Method:                 Least Squares   F-statistic:                 5.085e+04
+Date:                Fri, 29 May 2026   Prob (F-statistic):               0.00
+Time:                        23:55:38   Log-Likelihood:            -1.0706e+05
+No. Observations:              106872   AIC:                         2.143e+05
+Df Residuals:                  106795   BIC:                         2.150e+05
+Df Model:                          76                                         
+Covariance Type:                  HC3                                         
+==============================================================================================================
+                                                 coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------
+Intercept                                      2.0341      0.749      2.717      0.007       0.567       3.501
+C(grade)[T.Grade 2]                           -0.8901      0.271     -3.287      0.001      -1.421      -0.359
+C(grade)[T.Grade 3]                           -1.5742      0.146    -10.793      0.000      -1.860      -1.288
+C(grade)[T.Grade 4]                           -1.3097      0.122    -10.701      0.000      -1.550      -1.070
+C(grade)[T.Grade 5]                           -1.3582      0.106    -12.778      0.000      -1.566      -1.150
+C(grade)[T.Grade 6]                           -1.3454      0.098    -13.733      0.000      -1.537      -1.153
+C(grade)[T.Grade 7]                           -1.1972      0.096    -12.499      0.000      -1.385      -1.009
+C(grade)[T.Grade 8]                           -1.0652      0.095    -11.200      0.000      -1.252      -0.879
+C(grade)[T.Grade 9]                           -0.7208      0.095     -7.584      0.000      -0.907      -0.535
+C(grade)[T.PSA 10]                             0.5862      0.095      6.166      0.000       0.400       0.773
+C(cardRarity)[T.Black White Rare]              3.7886      0.029    130.594      0.000       3.732       3.845
+C(cardRarity)[T.Common]                       -0.3178      0.038     -8.406      0.000      -0.392      -0.244
+C(cardRarity)[T.Double Rare]                  -0.0516      0.026     -1.992      0.046      -0.102      -0.001
+C(cardRarity)[T.Hyper Rare]                    0.7065      0.025     28.544      0.000       0.658       0.755
+C(cardRarity)[T.Illustration Rare]             0.9014      0.026     34.952      0.000       0.851       0.952
+C(cardRarity)[T.Mega Attack Rare]              0.7624      0.044     17.509      0.000       0.677       0.848
+C(cardRarity)[T.Mega Hyper Rare]               2.9808      0.036     83.400      0.000       2.911       3.051
+C(cardRarity)[T.Rare]                          0.0261      0.027      0.958      0.338      -0.027       0.079
+C(cardRarity)[T.Special Illustration Rare]     1.5976      0.026     61.327      0.000       1.547       1.649
+C(cardRarity)[T.Ultra Rare]                    0.3968      0.025     15.642      0.000       0.347       0.447
+C(cardRarity)[T.Uncommon]                     -0.1405      0.038     -3.658      0.000      -0.216      -0.065
+C(cardRarity)[T.missing]                       0.2542      0.320      0.794      0.427      -0.373       0.882
+C(finishType)[T.Normal]                        0.4072      0.028     14.399      0.000       0.352       0.463
+C(finishType)[T.Reverse Holofoil]              0.0435      0.026      1.703      0.088      -0.007       0.094
+C(finishType)[T.missing]                       0.2542      0.320      0.794      0.427      -0.373       0.882
+C(patternType)[T.none]                         0.7844      1.278      0.614      0.539      -1.719       3.288
+C(patternType)[T.pokeball]                     0.9954      2.344      0.425      0.671      -3.598       5.589
+C(setName)[T.Black Bolt]                      -0.6805      0.023    -29.760      0.000      -0.725      -0.636
+C(setName)[T.Destined Rivals]                 -0.7013      0.022    -31.896      0.000      -0.744      -0.658
+C(setName)[T.Journey Together]                -0.7945      0.022    -35.807      0.000      -0.838      -0.751
+C(setName)[T.Mega Evolution]                  -1.0265      0.022    -47.589      0.000      -1.069      -0.984
+C(setName)[T.Obsidian Flames]                 -1.0584      0.022    -47.448      0.000      -1.102      -1.015
+C(setName)[T.Paldea Evolved]                  -0.8659      0.022    -39.209      0.000      -0.909      -0.823
+C(setName)[T.Paradox Rift]                    -0.9253      0.021    -43.579      0.000      -0.967      -0.884
+C(setName)[T.Phantasmal Flames]               -0.9539      0.023    -41.673      0.000      -0.999      -0.909
+C(setName)[T.Prismatic Evolutions]            -0.7674      0.022    -34.949      0.000      -0.810      -0.724
+C(setName)[T.Scarlet & Violet 151]            -0.9101      0.022    -40.464      0.000      -0.954      -0.866
+C(setName)[T.Scarlet & Violet Base]           -0.8611      0.022    -38.686      0.000      -0.905      -0.817
+C(setName)[T.Shrouded Fable]                  -0.9730      0.023    -42.228      0.000      -1.018      -0.928
+C(setName)[T.Stellar Crown]                   -0.9511      0.022    -43.335      0.000      -0.994      -0.908
+C(setName)[T.Surging Sparks]                  -0.8810      0.022    -40.859      0.000      -0.923      -0.839
+C(setName)[T.Temporal Forces]                 -0.8328      0.022    -38.371      0.000      -0.875      -0.790
+C(setName)[T.Twilight Masquerade]             -0.9511      0.022    -43.378      0.000      -0.994      -0.908
+C(setName)[T.White Flare]                     -0.7230      0.022    -32.206      0.000      -0.767      -0.679
+C(supertype)[T.missing]                        0.2542      0.320      0.794      0.427      -0.373       0.882
+C(supertype)[T.pokemon]                        1.4618      0.484      3.023      0.003       0.514       2.410
+C(supertype)[T.trainer]                       -0.4273      0.081     -5.268      0.000      -0.586      -0.268
+C(cardSubType)[T.Basic Energy]                -0.5142      0.109     -4.713      0.000      -0.728      -0.300
+C(cardSubType)[T.Basic Lightning Energy]      -0.9587      0.118     -8.144      0.000      -1.189      -0.728
+C(cardSubType)[T.Basic Metal Energy]          -0.1723      0.138     -1.253      0.210      -0.442       0.097
+C(cardSubType)[T.Colorless]                    0.0654      0.049      1.340      0.180      -0.030       0.161
+C(cardSubType)[T.Darkness]                     0.2569      0.049      5.261      0.000       0.161       0.353
+C(cardSubType)[T.Dragon]                       0.2831      0.049      5.761      0.000       0.187       0.379
+C(cardSubType)[T.Energy]                      -0.8596      0.105     -8.213      0.000      -1.065      -0.654
+C(cardSubType)[T.Fighting]                     0.1300      0.049      2.659      0.008       0.034       0.226
+C(cardSubType)[T.Fire]                         0.1129      0.049      2.311      0.021       0.017       0.209
+C(cardSubType)[T.Grass]                       -0.0622      0.049     -1.277      0.202      -0.158       0.033
+C(cardSubType)[T.Item]                        -0.0065      0.025     -0.260      0.795      -0.055       0.042
+C(cardSubType)[T.Lightning]                    0.2314      0.049      4.727      0.000       0.135       0.327
+C(cardSubType)[T.Metal]                        0.0093      0.049      0.190      0.849      -0.087       0.105
+C(cardSubType)[T.Psychic]                      0.2856      0.049      5.861      0.000       0.190       0.381
+C(cardSubType)[T.Special Multi Energy]        -0.4873      0.121     -4.033      0.000      -0.724      -0.250
+C(cardSubType)[T.Special Rainbow Energy]      -0.6053      0.111     -5.456      0.000      -0.823      -0.388
+C(cardSubType)[T.Stadium]                     -0.1384      0.028     -4.952      0.000      -0.193      -0.084
+C(cardSubType)[T.Supporter]                   -0.1451      0.024     -6.169      0.000      -0.191      -0.099
+C(cardSubType)[T.Tool]                        -0.1372      0.033     -4.218      0.000      -0.201      -0.073
+C(cardSubType)[T.Water]                        0.1496      0.049      3.070      0.002       0.054       0.245
+C(cardSubType)[T.missing]                      0.2542      0.320      0.794      0.427      -0.373       0.882
+C(stage)[T.Stage 1]                           -0.1146      0.006    -20.815      0.000      -0.125      -0.104
+C(stage)[T.Stage 2]                            0.0335      0.008      4.217      0.000       0.018       0.049
+C(stage)[T.missing]                            0.5722      0.268      2.134      0.033       0.047       1.098
+C(pokemonGeneration)[T.gen2]                  -0.2471      0.011    -23.365      0.000      -0.268      -0.226
+C(pokemonGeneration)[T.gen3]                  -0.4656      0.010    -46.902      0.000      -0.485      -0.446
+C(pokemonGeneration)[T.gen4]                  -0.4737      0.010    -46.683      0.000      -0.494      -0.454
+C(pokemonGeneration)[T.gen5]                  -0.7027      0.011    -65.048      0.000      -0.724      -0.681
+C(pokemonGeneration)[T.gen6]                  -0.5898      0.014    -42.189      0.000      -0.617      -0.562
+C(pokemonGeneration)[T.gen7]                  -0.7169      0.013    -53.559      0.000      -0.743      -0.691
+C(pokemonGeneration)[T.gen8]                  -0.7973      0.011    -74.527      0.000      -0.818      -0.776
+C(pokemonGeneration)[T.gen9]                  -0.7944      0.008    -94.319      0.000      -0.811      -0.778
+C(pokemonGeneration)[T.missing]                0.5722      0.268      2.134      0.033       0.047       1.098
+isLegendary[T.True]                            0.0651      0.008      8.197      0.000       0.050       0.081
+isMythical[T.True]                             0.0190      0.015      1.248      0.212      -0.011       0.049
+isStarter[T.True]                              0.4308      0.010     45.049      0.000       0.412       0.450
+isEeveelution[T.True]                          0.4643      0.013     35.119      0.000       0.438       0.490
+isWaifuTrainer[T.True]                         0.7696      0.023     33.185      0.000       0.724       0.815
+isExCard[T.True]                                    0          0        nan        nan           0           0
+isParadoxPokemon[T.True]                            0          0        nan        nan           0           0
+isPaldeanStarter[T.True]                            0          0        nan        nan           0           0
+isSVBoxLegendary[T.True]                            0          0        nan        nan           0           0
+isSecretNumber[T.True]                              0          0        nan        nan           0           0
+isTrainerPokemon[T.True]                            0          0        nan        nan           0           0
+isPromo[T.True]                                     0          0        nan        nan           0           0
+isMasterBall[T.True]                                0          0        nan        nan           0           0
+isTerastal[T.True]                                  0          0        nan        nan           0           0
+==============================================================================
+Omnibus:                    13433.650   Durbin-Watson:                   0.675
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            67060.521
+Skew:                           0.516   Prob(JB):                         0.00
+Kurtosis:                       6.741   Cond. No.                     2.71e+16
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The smallest eigenvalue is 5.34e-28. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+
+Coefficients sorted by p-value:
+                                                coef        p_value   std_err  conf_low  conf_high
+C(cardRarity)[T.Black White Rare]           3.788586   0.000000e+00  0.029010  3.731727   3.845446
+C(setName)[T.Obsidian Flames]              -1.058361   0.000000e+00  0.022306 -1.102079  -1.014642
+C(cardRarity)[T.Special Illustration Rare]  1.597602   0.000000e+00  0.026051  1.546543   1.648660
+C(cardRarity)[T.Mega Hyper Rare]            2.980753   0.000000e+00  0.035740  2.910703   3.050802
+C(setName)[T.Mega Evolution]               -1.026536   0.000000e+00  0.021571 -1.068814  -0.984258
+C(setName)[T.Phantasmal Flames]            -0.953913   0.000000e+00  0.022891 -0.998778  -0.909049
+C(setName)[T.Temporal Forces]              -0.832772   0.000000e+00  0.021703 -0.875310  -0.790234
+C(setName)[T.Twilight Masquerade]          -0.951092   0.000000e+00  0.021926 -0.994066  -0.908119
+C(setName)[T.Surging Sparks]               -0.880999   0.000000e+00  0.021562 -0.923260  -0.838739
+C(setName)[T.Stellar Crown]                -0.951085   0.000000e+00  0.021947 -0.994102  -0.908069
+C(setName)[T.Scarlet & Violet Base]        -0.861054   0.000000e+00  0.022257 -0.904678  -0.817430
+C(setName)[T.Shrouded Fable]               -0.972989   0.000000e+00  0.023041 -1.018149  -0.927829
+C(setName)[T.Scarlet & Violet 151]         -0.910141   0.000000e+00  0.022492 -0.954226  -0.866057
+C(setName)[T.Paldea Evolved]               -0.865876   0.000000e+00  0.022084 -0.909159  -0.822593
+C(setName)[T.Paradox Rift]                 -0.925339   0.000000e+00  0.021234 -0.966957  -0.883722
+C(pokemonGeneration)[T.gen6]               -0.589773   0.000000e+00  0.013979 -0.617172  -0.562374
+isStarter[T.True]                           0.430765   0.000000e+00  0.009562  0.412023   0.449507
+C(pokemonGeneration)[T.gen3]               -0.465635   0.000000e+00  0.009928 -0.485093  -0.446177
+C(pokemonGeneration)[T.gen5]               -0.702669   0.000000e+00  0.010802 -0.723841  -0.681496
+C(pokemonGeneration)[T.gen4]               -0.473698   0.000000e+00  0.010147 -0.493586  -0.453811
+C(pokemonGeneration)[T.gen7]               -0.716893   0.000000e+00  0.013385 -0.743127  -0.690659
+C(pokemonGeneration)[T.gen8]               -0.797252   0.000000e+00  0.010697 -0.818218  -0.776285
+C(pokemonGeneration)[T.gen9]               -0.794381   0.000000e+00  0.008422 -0.810889  -0.777874
+C(setName)[T.Journey Together]             -0.794520  8.616282e-281  0.022189 -0.838010  -0.751030
+isEeveelution[T.True]                       0.464325  3.518029e-270  0.013222  0.438411   0.490239
+C(cardRarity)[T.Illustration Rare]          0.901397  1.223558e-267  0.025790  0.850849   0.951944
+C(setName)[T.Prismatic Evolutions]         -0.767400  1.329443e-267  0.021958 -0.810436  -0.724364
+isWaifuTrainer[T.True]                      0.769597  1.763611e-241  0.023191  0.724143   0.815050
+C(setName)[T.White Flare]                  -0.722992  1.470528e-227  0.022449 -0.766991  -0.678992
+C(setName)[T.Destined Rivals]              -0.701273  3.016081e-223  0.021986 -0.744365  -0.658181
+C(setName)[T.Black Bolt]                   -0.680484  1.279927e-194  0.022866 -0.725300  -0.635669
+C(cardRarity)[T.Hyper Rare]                 0.706472  3.354526e-179  0.024750  0.657962   0.754982
+C(pokemonGeneration)[T.gen2]               -0.247091  9.700179e-121  0.010575 -0.267819  -0.226364
+C(stage)[T.Stage 1]                        -0.114644   3.172926e-96  0.005508 -0.125439  -0.103849
+C(cardRarity)[T.Mega Attack Rare]           0.762441   1.222149e-68  0.043546  0.677093   0.847789
+C(cardRarity)[T.Ultra Rare]                 0.396845   3.789041e-55  0.025371  0.347118   0.446571
+C(finishType)[T.Normal]                     0.407165   5.260583e-47  0.028278  0.351742   0.462588
+C(grade)[T.Grade 6]                        -1.345395   6.414944e-43  0.097966 -1.537405  -1.153386
+C(grade)[T.Grade 5]                        -1.358165   2.168900e-37  0.106287 -1.566484  -1.149846
+C(grade)[T.Grade 7]                        -1.197204   7.564904e-36  0.095784 -1.384938  -1.009470
+C(grade)[T.Grade 8]                        -1.065184   4.082750e-29  0.095107 -1.251590  -0.878778
+C(grade)[T.Grade 3]                        -1.574228   3.719097e-27  0.145858 -1.860105  -1.288352
+C(grade)[T.Grade 4]                        -1.309722   1.012089e-26  0.122398 -1.549618  -1.069827
+C(cardRarity)[T.Common]                    -0.317806   4.257725e-17  0.037809 -0.391910  -0.243702
+C(cardSubType)[T.Energy]                   -0.859592   2.159863e-16  0.104664 -1.064729  -0.654454
+isLegendary[T.True]                         0.065122   2.458272e-16  0.007944  0.049552   0.080693
+C(cardSubType)[T.Basic Lightning Energy]   -0.958695   3.819445e-16  0.117716 -1.189414  -0.727977
+C(grade)[T.Grade 9]                        -0.720840   3.363312e-14  0.095054 -0.907141  -0.534538
+C(cardSubType)[T.Supporter]                -0.145128   6.884449e-10  0.023526 -0.191239  -0.099017
+C(grade)[T.PSA 10]                          0.586171   7.018726e-10  0.095070  0.399837   0.772506
+C(cardSubType)[T.Psychic]                   0.285614   4.612797e-09  0.048735  0.190096   0.381133
+C(cardSubType)[T.Dragon]                    0.283050   8.346075e-09  0.049129  0.186758   0.379342
+C(cardSubType)[T.Special Rainbow Energy]   -0.605319   4.878483e-08  0.110952 -0.822781  -0.387857
+C(supertype)[T.trainer]                    -0.427266   1.378170e-07  0.081104 -0.586227  -0.268305
+C(cardSubType)[T.Darkness]                  0.256862   1.432053e-07  0.048823  0.161171   0.352553
+C(cardSubType)[T.Stadium]                  -0.138450   7.339721e-07  0.027957 -0.193245  -0.083654
+C(cardSubType)[T.Lightning]                 0.231387   2.279805e-06  0.048951  0.135444   0.327329
+C(cardSubType)[T.Basic Energy]             -0.514161   2.439601e-06  0.109092 -0.727977  -0.300346
+C(cardSubType)[T.Tool]                     -0.137220   2.463152e-05  0.032531 -0.200979  -0.073461
+C(stage)[T.Stage 2]                         0.033507   2.471587e-05  0.007945  0.017935   0.049080
+C(cardSubType)[T.Special Multi Energy]     -0.487302   5.509617e-05  0.120832 -0.724129  -0.250476
+C(cardRarity)[T.Uncommon]                  -0.140505   2.538758e-04  0.038407 -0.215782  -0.065229
+C(grade)[T.Grade 2]                        -0.890107   1.012312e-03  0.270789 -1.420845  -0.359370
+C(cardSubType)[T.Water]                     0.149627   2.141949e-03  0.048741  0.054095   0.245158
+C(supertype)[T.pokemon]                     1.461847   2.504823e-03  0.483614  0.513982   2.409712
+Intercept                                   2.034092   6.587855e-03  0.748656  0.566752   3.501431
+C(cardSubType)[T.Fighting]                  0.129989   7.828959e-03  0.048880  0.034186   0.225792
+C(cardSubType)[T.Fire]                      0.112860   2.085882e-02  0.048846  0.017124   0.208596
+C(pokemonGeneration)[T.missing]             0.572245   3.283003e-02  0.268136  0.046707   1.097783
+C(stage)[T.missing]                         0.572245   3.283003e-02  0.268136  0.046707   1.097783
+C(cardRarity)[T.Double Rare]               -0.051624   4.639600e-02  0.025919 -0.102424  -0.000824
+C(finishType)[T.Reverse Holofoil]           0.043529   8.848137e-02  0.025553 -0.006554   0.093613
+C(cardSubType)[T.Colorless]                 0.065353   1.801067e-01  0.048756 -0.030206   0.160913
+C(cardSubType)[T.Grass]                    -0.062230   2.015019e-01  0.048720 -0.157720   0.033260
+C(cardSubType)[T.Basic Metal Energy]       -0.172272   2.102524e-01  0.137502 -0.441771   0.097226
+isMythical[T.True]                          0.019000   2.120094e-01  0.015223 -0.010838   0.048837
+C(cardRarity)[T.Rare]                       0.026055   3.382466e-01  0.027208 -0.027271   0.079382
+C(cardSubType)[T.missing]                   0.254233   4.271849e-01  0.320186 -0.373319   0.881786
+C(cardRarity)[T.missing]                    0.254233   4.271849e-01  0.320186 -0.373319   0.881786
+C(supertype)[T.missing]                     0.254233   4.271849e-01  0.320186 -0.373319   0.881786
+C(finishType)[T.missing]                    0.254233   4.271849e-01  0.320186 -0.373319   0.881786
+C(patternType)[T.none]                      0.784424   5.392045e-01  1.277529 -1.719487   3.288335
+C(patternType)[T.pokeball]                  0.995435   6.710581e-01  2.343874 -3.598475   5.589344
+C(cardSubType)[T.Item]                     -0.006469   7.948439e-01  0.024877 -0.055226   0.042289
+C(cardSubType)[T.Metal]                     0.009334   8.490930e-01  0.049055 -0.086812   0.105480
+isExCard[T.True]                            0.000000            NaN  0.000000  0.000000   0.000000
+isParadoxPokemon[T.True]                    0.000000            NaN  0.000000  0.000000   0.000000
+isPaldeanStarter[T.True]                    0.000000            NaN  0.000000  0.000000   0.000000
+isSVBoxLegendary[T.True]                    0.000000            NaN  0.000000  0.000000   0.000000
+isSecretNumber[T.True]                      0.000000            NaN  0.000000  0.000000   0.000000
+isTrainerPokemon[T.True]                    0.000000            NaN  0.000000  0.000000   0.000000
+isPromo[T.True]                             0.000000            NaN  0.000000  0.000000   0.000000
+isMasterBall[T.True]                        0.000000            NaN  0.000000  0.000000   0.000000
+isTerastal[T.True]                          0.000000            NaN  0.000000  0.000000   0.000000
+
+Approximate percent change from log coefficient:
+                                                coef  percent_change        p_value
+C(cardRarity)[T.Black White Rare]           3.788586     4319.388425   0.000000e+00
+C(setName)[T.Obsidian Flames]              -1.058361      -65.297576   0.000000e+00
+C(cardRarity)[T.Special Illustration Rare]  1.597602      394.116690   0.000000e+00
+C(cardRarity)[T.Mega Hyper Rare]            2.980753     1870.264430   0.000000e+00
+C(setName)[T.Mega Evolution]               -1.026536      -64.175425   0.000000e+00
+C(setName)[T.Phantasmal Flames]            -0.953913      -61.476950   0.000000e+00
+C(setName)[T.Temporal Forces]              -0.832772      -56.515788   0.000000e+00
+C(setName)[T.Twilight Masquerade]          -0.951092      -61.368125   0.000000e+00
+C(setName)[T.Surging Sparks]               -0.880999      -58.563128   0.000000e+00
+C(setName)[T.Stellar Crown]                -0.951085      -61.367852   0.000000e+00
+C(setName)[T.Scarlet & Violet Base]        -0.861054      -57.728370   0.000000e+00
+C(setName)[T.Shrouded Fable]               -0.972989      -62.204846   0.000000e+00
+C(setName)[T.Scarlet & Violet 151]         -0.910141      -59.753272   0.000000e+00
+C(setName)[T.Paldea Evolved]               -0.865876      -57.931718   0.000000e+00
+C(setName)[T.Paradox Rift]                 -0.925339      -60.360315   0.000000e+00
+C(pokemonGeneration)[T.gen6]               -0.589773      -44.554678   0.000000e+00
+isStarter[T.True]                           0.430765       53.843384   0.000000e+00
+C(pokemonGeneration)[T.gen3]               -0.465635      -37.226375   0.000000e+00
+C(pokemonGeneration)[T.gen5]               -0.702669      -50.473811   0.000000e+00
+C(pokemonGeneration)[T.gen4]               -0.473698      -37.730499   0.000000e+00
+C(pokemonGeneration)[T.gen7]               -0.716893      -51.173297   0.000000e+00
+C(pokemonGeneration)[T.gen8]               -0.797252      -54.943445   0.000000e+00
+C(pokemonGeneration)[T.gen9]               -0.794381      -54.813930   0.000000e+00
+C(setName)[T.Journey Together]             -0.794520      -54.820190  8.616282e-281
+isEeveelution[T.True]                       0.464325       59.093941  3.518029e-270
+C(cardRarity)[T.Illustration Rare]          0.901397      146.304058  1.223558e-267
+C(setName)[T.Prismatic Evolutions]         -0.767400      -53.578168  1.329443e-267
+isWaifuTrainer[T.True]                      0.769597      115.889538  1.763611e-241
+C(setName)[T.White Flare]                  -0.722992      -51.470180  1.470528e-227
+C(setName)[T.Destined Rivals]              -0.701273      -50.404635  3.016081e-223
+C(setName)[T.Black Bolt]                   -0.680484      -49.362833  1.279927e-194
+C(cardRarity)[T.Hyper Rare]                 0.706472      102.682795  3.354526e-179
+C(pokemonGeneration)[T.gen2]               -0.247091      -21.893071  9.700179e-121
+C(stage)[T.Stage 1]                        -0.114644      -10.831646   3.172926e-96
+C(cardRarity)[T.Mega Attack Rare]           0.762441      114.350254   1.222149e-68
+C(cardRarity)[T.Ultra Rare]                 0.396845       48.712474   3.789041e-55
+C(finishType)[T.Normal]                     0.407165       50.255224   5.260583e-47
+C(grade)[T.Grade 6]                        -1.345395      -73.956326   6.414944e-43
+C(grade)[T.Grade 5]                        -1.358165      -74.286776   2.168900e-37
+C(grade)[T.Grade 7]                        -1.197204      -69.796242   7.564904e-36
+C(grade)[T.Grade 8]                        -1.065184      -65.533554   4.082750e-29
+C(grade)[T.Grade 3]                        -1.574228      -79.283266   3.719097e-27
+C(grade)[T.Grade 4]                        -1.309722      -73.010501   1.012089e-26
+C(cardRarity)[T.Common]                    -0.317806      -27.225582   4.257725e-17
+C(cardSubType)[T.Energy]                   -0.859592      -57.666504   2.159863e-16
+isLegendary[T.True]                         0.065122        6.728967   2.458272e-16
+C(cardSubType)[T.Basic Lightning Energy]   -0.958695      -61.660718   3.819445e-16
+C(grade)[T.Grade 9]                        -0.720840      -51.365627   3.363312e-14
+C(cardSubType)[T.Supporter]                -0.145128      -13.508828   6.884449e-10
+C(grade)[T.PSA 10]                          0.586171       79.709498   7.018726e-10
+C(cardSubType)[T.Psychic]                   0.285614       33.057931   4.612797e-09
+C(cardSubType)[T.Dragon]                    0.283050       32.717176   8.346075e-09
+C(cardSubType)[T.Special Rainbow Energy]   -0.605319      -45.409983   4.878483e-08
+C(supertype)[T.trainer]                    -0.427266      -34.770993   1.378170e-07
+C(cardSubType)[T.Darkness]                  0.256862       29.286690   1.432053e-07
+C(cardSubType)[T.Stadium]                  -0.138450      -12.929299   7.339721e-07
+C(cardSubType)[T.Lightning]                 0.231387       26.034649   2.279805e-06
+C(cardSubType)[T.Basic Energy]             -0.514161      -40.199815   2.439601e-06
+C(cardSubType)[T.Tool]                     -0.137220      -12.822138   2.463152e-05
+C(stage)[T.Stage 2]                         0.033507        3.407513   2.471587e-05
+C(cardSubType)[T.Special Multi Energy]     -0.487302      -38.571881   5.509617e-05
+C(cardRarity)[T.Uncommon]                  -0.140505      -13.108091   2.538758e-04
+C(grade)[T.Grade 2]                        -0.890107      -58.938824   1.012312e-03
+C(cardSubType)[T.Water]                     0.149627       16.140046   2.141949e-03
+C(supertype)[T.pokemon]                     1.461847      331.391892   2.504823e-03
+Intercept                                   2.034092      664.530381   6.587855e-03
+C(cardSubType)[T.Fighting]                  0.129989       13.881628   7.828959e-03
+C(cardSubType)[T.Fire]                      0.112860       11.947482   2.085882e-02
+C(pokemonGeneration)[T.missing]             0.572245       77.224096   3.283003e-02
+C(stage)[T.missing]                         0.572245       77.224096   3.283003e-02
+C(cardRarity)[T.Double Rare]               -0.051624       -5.031449   4.639600e-02
+C(finishType)[T.Reverse Holofoil]           0.043529        4.449070   8.848137e-02
+C(cardSubType)[T.Colorless]                 0.065353        6.753620   1.801067e-01
+C(cardSubType)[T.Grass]                    -0.062230       -6.033294   2.015019e-01
+C(cardSubType)[T.Basic Metal Energy]       -0.172272      -15.824986   2.102524e-01
+isMythical[T.True]                          0.019000        1.918118   2.120094e-01
+C(cardRarity)[T.Rare]                       0.026055        2.639783   3.382466e-01
+C(cardSubType)[T.missing]                   0.254233       28.947250   4.271849e-01
+C(cardRarity)[T.missing]                    0.254233       28.947250   4.271849e-01
+C(supertype)[T.missing]                     0.254233       28.947250   4.271849e-01
+C(finishType)[T.missing]                    0.254233       28.947250   4.271849e-01
+C(patternType)[T.none]                      0.784424      119.114413   5.392045e-01
+C(patternType)[T.pokeball]                  0.995435      170.589984   6.710581e-01
+C(cardSubType)[T.Item]                     -0.006469       -0.644771   7.948439e-01
+C(cardSubType)[T.Metal]                     0.009334        0.937769   8.490930e-01
+isExCard[T.True]                            0.000000        0.000000            NaN
+isParadoxPokemon[T.True]                    0.000000        0.000000            NaN
+isPaldeanStarter[T.True]                    0.000000        0.000000            NaN
+isSVBoxLegendary[T.True]                    0.000000        0.000000            NaN
+isSecretNumber[T.True]                      0.000000        0.000000            NaN
+isTrainerPokemon[T.True]                    0.000000        0.000000            NaN
+isPromo[T.True]                             0.000000        0.000000            NaN
+isMasterBall[T.True]                        0.000000        0.000000            NaN
+isTerastal[T.True]                          0.000000        0.000000            NaN
+
+Most positive estimated effects:
+                                                coef        p_value   std_err  conf_low  conf_high  percent_change
+C(cardRarity)[T.Black White Rare]           3.788586   0.000000e+00  0.029010  3.731727   3.845446     4319.388425
+C(cardRarity)[T.Mega Hyper Rare]            2.980753   0.000000e+00  0.035740  2.910703   3.050802     1870.264430
+Intercept                                   2.034092   6.587855e-03  0.748656  0.566752   3.501431      664.530381
+C(cardRarity)[T.Special Illustration Rare]  1.597602   0.000000e+00  0.026051  1.546543   1.648660      394.116690
+C(supertype)[T.pokemon]                     1.461847   2.504823e-03  0.483614  0.513982   2.409712      331.391892
+C(patternType)[T.pokeball]                  0.995435   6.710581e-01  2.343874 -3.598475   5.589344      170.589984
+C(cardRarity)[T.Illustration Rare]          0.901397  1.223558e-267  0.025790  0.850849   0.951944      146.304058
+C(patternType)[T.none]                      0.784424   5.392045e-01  1.277529 -1.719487   3.288335      119.114413
+isWaifuTrainer[T.True]                      0.769597  1.763611e-241  0.023191  0.724143   0.815050      115.889538
+C(cardRarity)[T.Mega Attack Rare]           0.762441   1.222149e-68  0.043546  0.677093   0.847789      114.350254
+C(cardRarity)[T.Hyper Rare]                 0.706472  3.354526e-179  0.024750  0.657962   0.754982      102.682795
+C(grade)[T.PSA 10]                          0.586171   7.018726e-10  0.095070  0.399837   0.772506       79.709498
+C(stage)[T.missing]                         0.572245   3.283003e-02  0.268136  0.046707   1.097783       77.224096
+C(pokemonGeneration)[T.missing]             0.572245   3.283003e-02  0.268136  0.046707   1.097783       77.224096
+isEeveelution[T.True]                       0.464325  3.518029e-270  0.013222  0.438411   0.490239       59.093941
+isStarter[T.True]                           0.430765   0.000000e+00  0.009562  0.412023   0.449507       53.843384
+C(finishType)[T.Normal]                     0.407165   5.260583e-47  0.028278  0.351742   0.462588       50.255224
+C(cardRarity)[T.Ultra Rare]                 0.396845   3.789041e-55  0.025371  0.347118   0.446571       48.712474
+C(cardSubType)[T.Psychic]                   0.285614   4.612797e-09  0.048735  0.190096   0.381133       33.057931
+C(cardSubType)[T.Dragon]                    0.283050   8.346075e-09  0.049129  0.186758   0.379342       32.717176
+C(cardSubType)[T.Darkness]                  0.256862   1.432053e-07  0.048823  0.161171   0.352553       29.286690
+C(cardRarity)[T.missing]                    0.254233   4.271849e-01  0.320186 -0.373319   0.881786       28.947250
+C(cardSubType)[T.missing]                   0.254233   4.271849e-01  0.320186 -0.373319   0.881786       28.947250
+C(supertype)[T.missing]                     0.254233   4.271849e-01  0.320186 -0.373319   0.881786       28.947250
+C(finishType)[T.missing]                    0.254233   4.271849e-01  0.320186 -0.373319   0.881786       28.947250
+
+Most negative estimated effects:
+                                              coef        p_value   std_err  conf_low  conf_high  percent_change
+C(grade)[T.Grade 3]                      -1.574228   3.719097e-27  0.145858 -1.860105  -1.288352      -79.283266
+C(grade)[T.Grade 5]                      -1.358165   2.168900e-37  0.106287 -1.566484  -1.149846      -74.286776
+C(grade)[T.Grade 6]                      -1.345395   6.414944e-43  0.097966 -1.537405  -1.153386      -73.956326
+C(grade)[T.Grade 4]                      -1.309722   1.012089e-26  0.122398 -1.549618  -1.069827      -73.010501
+C(grade)[T.Grade 7]                      -1.197204   7.564904e-36  0.095784 -1.384938  -1.009470      -69.796242
+C(grade)[T.Grade 8]                      -1.065184   4.082750e-29  0.095107 -1.251590  -0.878778      -65.533554
+C(setName)[T.Obsidian Flames]            -1.058361   0.000000e+00  0.022306 -1.102079  -1.014642      -65.297576
+C(setName)[T.Mega Evolution]             -1.026536   0.000000e+00  0.021571 -1.068814  -0.984258      -64.175425
+C(setName)[T.Shrouded Fable]             -0.972989   0.000000e+00  0.023041 -1.018149  -0.927829      -62.204846
+C(cardSubType)[T.Basic Lightning Energy] -0.958695   3.819445e-16  0.117716 -1.189414  -0.727977      -61.660718
+C(setName)[T.Phantasmal Flames]          -0.953913   0.000000e+00  0.022891 -0.998778  -0.909049      -61.476950
+C(setName)[T.Twilight Masquerade]        -0.951092   0.000000e+00  0.021926 -0.994066  -0.908119      -61.368125
+C(setName)[T.Stellar Crown]              -0.951085   0.000000e+00  0.021947 -0.994102  -0.908069      -61.367852
+C(setName)[T.Paradox Rift]               -0.925339   0.000000e+00  0.021234 -0.966957  -0.883722      -60.360315
+C(setName)[T.Scarlet & Violet 151]       -0.910141   0.000000e+00  0.022492 -0.954226  -0.866057      -59.753272
+C(grade)[T.Grade 2]                      -0.890107   1.012312e-03  0.270789 -1.420845  -0.359370      -58.938824
+C(setName)[T.Surging Sparks]             -0.880999   0.000000e+00  0.021562 -0.923260  -0.838739      -58.563128
+C(setName)[T.Paldea Evolved]             -0.865876   0.000000e+00  0.022084 -0.909159  -0.822593      -57.931718
+C(setName)[T.Scarlet & Violet Base]      -0.861054   0.000000e+00  0.022257 -0.904678  -0.817430      -57.728370
+C(cardSubType)[T.Energy]                 -0.859592   2.159863e-16  0.104664 -1.064729  -0.654454      -57.666504
+C(setName)[T.Temporal Forces]            -0.832772   0.000000e+00  0.021703 -0.875310  -0.790234      -56.515788
+C(pokemonGeneration)[T.gen8]             -0.797252   0.000000e+00  0.010697 -0.818218  -0.776285      -54.943445
+C(setName)[T.Journey Together]           -0.794520  8.616282e-281  0.022189 -0.838010  -0.751030      -54.820190
+C(pokemonGeneration)[T.gen9]             -0.794381   0.000000e+00  0.008422 -0.810889  -0.777874      -54.813930
+C(setName)[T.Prismatic Evolutions]       -0.767400  1.329443e-267  0.021958 -0.810436  -0.724364      -53.578168
+
+
+MODEL COMPARISON
+====================================================================================================
+                             model   nobs  r_squared  adj_r_squared           aic           bic
+   Model 1 Intrinsic Features Only 106872   0.321045       0.320619 296294.328737 296945.727062
+Model 2 Intrinsic Features + Grade 106872   0.684910       0.684685 214267.158267 215004.771077

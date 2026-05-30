@@ -18,10 +18,11 @@ OUTPUT_PATH = (
     BASE_DIR
     / "data"
     / "processed"
-    / "pricecharting_url_lookup.csv"
+    #/ "sv_pricecharting_url_lookup.csv"
+    / "ex_pricecharting_url_lookup.csv"
 )
 
-PRICECHARTING_SET_URLS = {
+SV_PRICECHARTING_SET_URLS = {
     "Mega Evolution":
         "https://www.pricecharting.com/console/pokemon-mega-evolution?sort=model-number&model-number=&model-number=&exclude-hardware=false&exclude-variants=false&show-images=true&in-collection=",
 
@@ -80,6 +81,41 @@ PRICECHARTING_SET_URLS = {
     #
     # "Phantasmal Flames":
     #     "https://www.pricecharting.com/console/pokemon-phantasmal-flames?...",
+}
+
+EX_PRICECHARTING_SET_URLS = {
+    "Fire Red And Leaf Green":
+        "https://www.pricecharting.com/console/pokemon-fire-red-&-leaf-green",
+    "Hidden Legends":
+        "https://www.pricecharting.com/console/pokemon-hidden-legends",
+    "Delta Species":
+        "https://www.pricecharting.com/console/pokemon-delta-species",
+    "Team Rocket Returns":
+        "https://www.pricecharting.com/console/pokemon-team-rocket-returns",
+    "Dragon Frontiers":
+        "https://www.pricecharting.com/console/pokemon-dragon-frontiers",
+    "Emerald":
+        "https://www.pricecharting.com/console/pokemon-emerald",
+    "Deoxys":
+        "https://www.pricecharting.com/console/pokemon-deoxys", 
+    "Unseen Forces":
+        "https://www.pricecharting.com/console/pokemon-unseen-forces",
+    "Crystal Guardians":
+        "https://www.pricecharting.com/console/pokemon-crystal-guardians", 
+    "Ruby & Sapphire":
+        "https://www.pricecharting.com/console/pokemon-ruby-&-sapphire",
+    "Dragon":
+        "https://www.pricecharting.com/console/pokemon-dragon",
+    "Team Magma vs Team Aqua":
+        "https://www.pricecharting.com/console/pokemon-team-magma-&-team-aqua",
+    "Legend Maker":
+        "https://www.pricecharting.com/console/pokemon-legend-maker",   
+    "Holon Phantoms":
+        "https://www.pricecharting.com/console/pokemon-holon-phantoms", 
+    "Sandstorm":
+        "https://www.pricecharting.com/console/pokemon-sandstorm",
+    "Power Keepers":
+        "https://www.pricecharting.com/console/pokemon-power-keepers",  
 }
 
 
@@ -270,7 +306,7 @@ def main():
         for (
             set_name,
             url
-        ) in PRICECHARTING_SET_URLS.items():
+        ) in EX_PRICECHARTING_SET_URLS.items():
 
             rows = scrape_set_page(
                 page,
