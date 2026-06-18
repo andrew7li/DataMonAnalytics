@@ -28,4 +28,12 @@ server.on("request", (req, res) => {
   }
 });
 
-server.listen(Number(process.env.PORT) || 3000, "0.0.0.0");
+const port = Number(process.env.PORT) || 3000;
+
+server.on("error", (err) => {
+  console.error("Server failed to start:", err);
+});
+
+server.listen(port, "0.0.0.0", () => {
+  console.log(`Server listening on 0.0.0.0:${port}`);
+});
