@@ -6,7 +6,7 @@ const server = createHTTPServer({
   responseMeta() {
     return {
       headers: {
-        "Access-Control-Allow-Origin": "http://localhost:5173",
+        "Access-Control-Allow-Origin": process.env.CLIENT_ORIGIN ?? "http://localhost:5173",
         "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
         "Access-Control-Allow-Headers": "content-type, x-trpc-source",
       },
@@ -14,4 +14,4 @@ const server = createHTTPServer({
   },
 });
 
-server.listen(3000);
+server.listen(Number(process.env.PORT) || 3000, "0.0.0.0");
