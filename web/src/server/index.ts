@@ -23,12 +23,15 @@ server.on("request", (req, res) => {
   if (req.method === "OPTIONS") {
     res.writeHead(204, corsHeaders);
     res.end();
+  } else if (req.url === "/") {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("BACKEND IS HEALTHY");
   } else {
     trpcHandler(req, res);
   }
 });
 
-const port = Number(process.env.PORT) || 3000;
+const port = Number(process.env.PORT) || 8080;
 
 server.on("error", (err) => {
   console.error("Server failed to start:", err);
