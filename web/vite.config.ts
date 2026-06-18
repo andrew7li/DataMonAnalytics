@@ -4,12 +4,12 @@ import babel from "@rolldown/plugin-babel";
 import path from "path";
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: "/DataMonAnalytics/",
+export default defineConfig(({ command }) => ({
+  base: command === "build" ? "/DataMonAnalytics/" : "/",
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-});
+}));

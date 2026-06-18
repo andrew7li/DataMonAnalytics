@@ -1,0 +1,94 @@
+.card-tile {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 92%, var(--accent) 8%);
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+}
+
+.card-tile-art {
+  display: block;
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    color-mix(in srgb, var(--accent) 40%, black)
+  );
+}
+
+.card-tile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px 16px;
+}
+
+.card-tile-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.card-tile-set {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.card-tile-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.card-tile-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.card-tile-psa {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.card-tile-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  &.up {
+    color: #16a34a;
+    background: rgba(22, 163, 74, 0.12);
+  }
+
+  &.down {
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.12);
+  }
+}

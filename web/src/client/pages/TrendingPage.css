@@ -1,0 +1,39 @@
+.trending-page {
+  padding: 12px 28px 64px;
+  text-align: left;
+}
+
+.trending-header h1 {
+  text-align: left;
+}
+
+.trending-header p {
+  color: var(--text);
+  margin-bottom: 32px;
+}
+
+.trending-section {
+  margin-bottom: 40px;
+}
+
+.trending-section-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.trending-section-title.up {
+  color: #16a34a;
+}
+
+.trending-section-title.down {
+  color: #dc2626;
+}
+
+.card-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
