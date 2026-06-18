@@ -5,6 +5,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>vite-project</title>
+    <script>
+      // Restore path redirected by 404.html (SPA workaround for GitHub Pages)
+      const p = new URLSearchParams(location.search).get("p");
+      if (p) history.replaceState(null, "", p || "/");
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      // Redirect to index with path encoded as query param (SPA workaround for GitHub Pages)
+      const repo = location.pathname.split("/")[1];
+      const path = location.pathname.slice(repo.length + 1) + location.search + location.hash;
+      location.replace("/" + repo + "/?p=" + encodeURIComponent(path));
+    </script>
+  </head>
+</html>
