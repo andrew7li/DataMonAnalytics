@@ -16,10 +16,15 @@ const server = createHTTPServer({
   },
 });
 
-server.server.on("request", (req, res) => {
+// Handle OPTIONS preflight before tRPC processes the request
+const [trpcHandler] = server.listeners("request");
+server.removeAllListeners("request");
+server.on("request", (req, res) => {
   if (req.method === "OPTIONS") {
     res.writeHead(204, corsHeaders);
     res.end();
+  } else {
+    trpcHandler(req, res);
   }
 });
 
